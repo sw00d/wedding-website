@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam & Frida | October 2, 2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #cecc85;
+            --secondary: #d78fa4;
+            --cream: #faf8f2;
+            --dark: #3a3a3a;
+            --light-gray: #f5f2eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(250, 248, 242, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(206, 204, 133, 0.35);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.7rem;
+            color: var(--dark);
+            letter-spacing: 0.02em;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-bouquet {
+            height: 36px;
+            width: auto;
+            display: block;
+            opacity: 0.75;
+        }
+
+        .nav-logo span {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: rgba(250, 248, 242, 0.98);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 320px;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.82rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.9rem 2rem;
+            display: block;
+            border-bottom: 1px solid rgba(206, 204, 133, 0.2);
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(206, 204, 133, 0.12);
+            color: var(--secondary);
+        }
+
+        /* ── Shared ── */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Hero ── */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(175deg, #faf8f2 0%, #f3ede0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bouquet-bg {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(420px, 80vw);
+            opacity: 0.18;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-date {
+            margin-bottom: 2rem;
+        }
+
+        .hero-date-day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 1;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-date-full {
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #aaa;
+            font-weight: 500;
+            margin-top: 0.4rem;
+        }
+
+        .hero-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(4.5rem, 11vw, 9rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.01em;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .hero-names .amp {
+            color: var(--secondary);
+            font-style: italic;
+            display: block;
+        }
+
+        .hero-divider {
+            width: 56px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 0 auto 1.8rem;
+        }
+
+        .hero-sub {
+            font-size: 0.88rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: 300;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-location {
+            font-size: 0.88rem;
+            color: #777;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-scroll {
+            text-decoration: none;
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #777;
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, #bbb, transparent);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ── Location ── */
+        #location {
+            background: white;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4.5rem;
+            align-items: center;
+        }
+
+        .villa-img-wrap {
+            position: relative;
+        }
+
+        .villa-img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -12px -12px 12px 12px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .villa-sketch {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            display: block;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            transition: gap 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .map-link:hover { gap: 0.85rem; }
+
+        /* ── Travel ── */
+        #travel {
+            background: var(--light-gray);
+        }
+
+        .travel-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .travel-card {
+            background: white;
+            padding: 2rem 1.75rem;
+            border-radius: 6px;
+            border-top: 3px solid var(--primary);
+            box-shadow: 0 2px 18px rgba(0,0,0,0.05);
+        }
+
+        .travel-card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .travel-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .travel-card p {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: #666;
+        }
+
+        /* ── Gallery ── */
+        #gallery {
+            background: #ddd8cc;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.025) 39px, rgba(0,0,0,0.025) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.025) 39px, rgba(0,0,0,0.025) 40px);
+        }
+
+        #gallery .section-inner {
+            text-align: center;
+        }
+
+        /* String / wire across the wall */
+        .gallery-wall {
+            position: relative;
+            margin-top: 1rem;
+            padding-top: 3rem;
+        }
+
+        .gallery-string {
+            position: absolute;
+            top: 2.2rem;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a09070 5%, #a09070 95%, transparent);
+            opacity: 0.5;
+        }
+
+        .polaroid-wall {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem 1.5rem;
+            padding: 0 1rem 1rem;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 36px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08);
+            width: 185px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+
+        /* Alternate rotations */
+        .polaroid:nth-child(1)  { transform: rotate(-3deg); }
+        .polaroid:nth-child(2)  { transform: rotate(2.5deg); }
+        .polaroid:nth-child(3)  { transform: rotate(-1.5deg); }
+        .polaroid:nth-child(4)  { transform: rotate(3.5deg); }
+        .polaroid:nth-child(5)  { transform: rotate(-2deg); }
+        .polaroid:nth-child(6)  { transform: rotate(1.5deg); }
+        .polaroid:nth-child(7)  { transform: rotate(-3.5deg); }
+        .polaroid:nth-child(8)  { transform: rotate(2deg); }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.07) !important;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+            z-index: 10;
+        }
+
+        /* Pushpin */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 13px;
+            height: 13px;
+            background: radial-gradient(circle at 38% 32%, #ffaaaa, #cc3333);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+            z-index: 2;
+        }
+
+        /* Thread from pin to top of frame */
+        .polaroid::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 8px;
+            background: rgba(120, 100, 60, 0.4);
+        }
+
+        .polaroid-img {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .polaroid-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Placeholder color swatches */
+        .ph-1 { background: linear-gradient(135deg, #cecc85, #b8b660); }
+        .ph-2 { background: linear-gradient(135deg, #f0c8d4, #d78fa4); }
+        .ph-3 { background: linear-gradient(135deg, #d4e8d4, #9bbf9b); }
+        .ph-4 { background: linear-gradient(135deg, #f0e4cc, #d4a870); }
+        .ph-5 { background: linear-gradient(135deg, #cce0ee, #8fb8d4); }
+        .ph-6 { background: linear-gradient(135deg, #eeddd4, #c89880); }
+        .ph-7 { background: linear-gradient(135deg, #e4d4ee, #a880c8); }
+        .ph-8 { background: linear-gradient(135deg, #ddeedd, #80b880); }
+
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.72rem;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* ── RSVP ── */
+        #rsvp {
+            background: white;
+            text-align: center;
+        }
+
+        .rsvp-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .rsvp-bouquet {
+            width: 130px;
+            display: block;
+            margin: 0 auto 2rem;
+            opacity: 0.82;
+        }
+
+        .rsvp-text {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #777;
+            margin-bottom: 2.5rem;
+        }
+
+        .rsvp-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 3.2rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 3rem;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(215, 143, 164, 0.35);
+        }
+
+        .rsvp-btn:hover {
+            background: #c77d94;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(215, 143, 164, 0.45);
+        }
+
+        .rsvp-note {
+            margin-top: 1.4rem;
+            font-size: 0.78rem;
+            color: #777;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--dark);
+            color: #888;
+            text-align: center;
+            padding: 2.8rem 2rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+
+        /* ── Spacing Utilities ──────────────────────────────────────────
+           Scale: 1=4px  2=8px  3=12px  4=16px  5=20px  6=24px
+                  8=32px  10=40px  12=48px  16=64px  20=80px  24=96px
+           p-*  = padding all sides       px-* / py-* = horizontal / vertical
+           pt-* / pr-* / pb-* / pl-* = individual sides
+           m-*  = margin all sides        mx-* / my-* = horizontal / vertical
+           mt-* / mr-* / mb-* / ml-* = individual sides
+           mx-auto = center block horizontally
+        ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── */
+
+        .p-0  { padding: 0; }
+        .p-1  { padding: 4px; }
+        .p-2  { padding: 8px; }
+        .p-3  { padding: 12px; }
+        .p-4  { padding: 16px; }
+        .p-5  { padding: 20px; }
+        .p-6  { padding: 24px; }
+        .p-8  { padding: 32px; }
+        .p-10 { padding: 40px; }
+        .p-12 { padding: 48px; }
+        .p-16 { padding: 64px; }
+        .p-20 { padding: 80px; }
+        .p-24 { padding: 96px; }
+
+        .px-0  { padding-left: 0;     padding-right: 0; }
+        .px-1  { padding-left: 4px;   padding-right: 4px; }
+        .px-2  { padding-left: 8px;   padding-right: 8px; }
+        .px-3  { padding-left: 12px;  padding-right: 12px; }
+        .px-4  { padding-left: 16px;  padding-right: 16px; }
+        .px-5  { padding-left: 20px;  padding-right: 20px; }
+        .px-6  { padding-left: 24px;  padding-right: 24px; }
+        .px-8  { padding-left: 32px;  padding-right: 32px; }
+        .px-10 { padding-left: 40px;  padding-right: 40px; }
+        .px-12 { padding-left: 48px;  padding-right: 48px; }
+        .px-16 { padding-left: 64px;  padding-right: 64px; }
+
+        .py-0  { padding-top: 0;     padding-bottom: 0; }
+        .py-1  { padding-top: 4px;   padding-bottom: 4px; }
+        .py-2  { padding-top: 8px;   padding-bottom: 8px; }
+        .py-3  { padding-top: 12px;  padding-bottom: 12px; }
+        .py-4  { padding-top: 16px;  padding-bottom: 16px; }
+        .py-5  { padding-top: 20px;  padding-bottom: 20px; }
+        .py-6  { padding-top: 24px;  padding-bottom: 24px; }
+        .py-8  { padding-top: 32px;  padding-bottom: 32px; }
+        .py-10 { padding-top: 40px;  padding-bottom: 40px; }
+        .py-12 { padding-top: 48px;  padding-bottom: 48px; }
+        .py-16 { padding-top: 64px;  padding-bottom: 64px; }
+
+        .pt-0  { padding-top: 0; }
+        .pt-1  { padding-top: 4px; }
+        .pt-2  { padding-top: 8px; }
+        .pt-3  { padding-top: 12px; }
+        .pt-4  { padding-top: 16px; }
+        .pt-5  { padding-top: 20px; }
+        .pt-6  { padding-top: 24px; }
+        .pt-8  { padding-top: 32px; }
+        .pt-10 { padding-top: 40px; }
+        .pt-12 { padding-top: 48px; }
+        .pt-16 { padding-top: 64px; }
+
+        .pr-0  { padding-right: 0; }
+        .pr-1  { padding-right: 4px; }
+        .pr-2  { padding-right: 8px; }
+        .pr-3  { padding-right: 12px; }
+        .pr-4  { padding-right: 16px; }
+        .pr-5  { padding-right: 20px; }
+        .pr-6  { padding-right: 24px; }
+        .pr-8  { padding-right: 32px; }
+        .pr-10 { padding-right: 40px; }
+        .pr-12 { padding-right: 48px; }
+        .pr-16 { padding-right: 64px; }
+
+        .pb-0  { padding-bottom: 0; }
+        .pb-1  { padding-bottom: 4px; }
+        .pb-2  { padding-bottom: 8px; }
+        .pb-3  { padding-bottom: 12px; }
+        .pb-4  { padding-bottom: 16px; }
+        .pb-5  { padding-bottom: 20px; }
+        .pb-6  { padding-bottom: 24px; }
+        .pb-8  { padding-bottom: 32px; }
+        .pb-10 { padding-bottom: 40px; }
+        .pb-12 { padding-bottom: 48px; }
+        .pb-16 { padding-bottom: 64px; }
+
+        .pl-0  { padding-left: 0; }
+        .pl-1  { padding-left: 4px; }
+        .pl-2  { padding-left: 8px; }
+        .pl-3  { padding-left: 12px; }
+        .pl-4  { padding-left: 16px; }
+        .pl-5  { padding-left: 20px; }
+        .pl-6  { padding-left: 24px; }
+        .pl-8  { padding-left: 32px; }
+        .pl-10 { padding-left: 40px; }
+        .pl-12 { padding-left: 48px; }
+        .pl-16 { padding-left: 64px; }
+
+        .m-0  { margin: 0; }
+        .m-1  { margin: 4px; }
+        .m-2  { margin: 8px; }
+        .m-3  { margin: 12px; }
+        .m-4  { margin: 16px; }
+        .m-5  { margin: 20px; }
+        .m-6  { margin: 24px; }
+        .m-8  { margin: 32px; }
+        .m-10 { margin: 40px; }
+        .m-12 { margin: 48px; }
+        .m-16 { margin: 64px; }
+        .m-20 { margin: 80px; }
+        .m-24 { margin: 96px; }
+
+        .mx-0    { margin-left: 0;    margin-right: 0; }
+        .mx-1    { margin-left: 4px;  margin-right: 4px; }
+        .mx-2    { margin-left: 8px;  margin-right: 8px; }
+        .mx-3    { margin-left: 12px; margin-right: 12px; }
+        .mx-4    { margin-left: 16px; margin-right: 16px; }
+        .mx-5    { margin-left: 20px; margin-right: 20px; }
+        .mx-6    { margin-left: 24px; margin-right: 24px; }
+        .mx-8    { margin-left: 32px; margin-right: 32px; }
+        .mx-10   { margin-left: 40px; margin-right: 40px; }
+        .mx-12   { margin-left: 48px; margin-right: 48px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        .my-0  { margin-top: 0;     margin-bottom: 0; }
+        .my-1  { margin-top: 4px;   margin-bottom: 4px; }
+        .my-2  { margin-top: 8px;   margin-bottom: 8px; }
+        .my-3  { margin-top: 12px;  margin-bottom: 12px; }
+        .my-4  { margin-top: 16px;  margin-bottom: 16px; }
+        .my-5  { margin-top: 20px;  margin-bottom: 20px; }
+        .my-6  { margin-top: 24px;  margin-bottom: 24px; }
+        .my-8  { margin-top: 32px;  margin-bottom: 32px; }
+        .my-10 { margin-top: 40px;  margin-bottom: 40px; }
+        .my-12 { margin-top: 48px;  margin-bottom: 48px; }
+        .my-16 { margin-top: 64px;  margin-bottom: 64px; }
+
+        .mt-0  { margin-top: 0; }
+        .mt-1  { margin-top: 4px; }
+        .mt-2  { margin-top: 8px; }
+        .mt-3  { margin-top: 12px; }
+        .mt-4  { margin-top: 16px; }
+        .mt-5  { margin-top: 20px; }
+        .mt-6  { margin-top: 24px; }
+        .mt-8  { margin-top: 32px; }
+        .mt-10 { margin-top: 40px; }
+        .mt-12 { margin-top: 48px; }
+        .mt-16 { margin-top: 64px; }
+
+        .mr-0  { margin-right: 0; }
+        .mr-1  { margin-right: 4px; }
+        .mr-2  { margin-right: 8px; }
+        .mr-3  { margin-right: 12px; }
+        .mr-4  { margin-right: 16px; }
+        .mr-5  { margin-right: 20px; }
+        .mr-6  { margin-right: 24px; }
+        .mr-8  { margin-right: 32px; }
+        .mr-10 { margin-right: 40px; }
+        .mr-12 { margin-right: 48px; }
+        .mr-16 { margin-right: 64px; }
+
+        .mb-0  { margin-bottom: 0; }
+        .mb-1  { margin-bottom: 4px; }
+        .mb-2  { margin-bottom: 8px; }
+        .mb-3  { margin-bottom: 12px; }
+        .mb-4  { margin-bottom: 16px; }
+        .mb-5  { margin-bottom: 20px; }
+        .mb-6  { margin-bottom: 24px; }
+        .mb-8  { margin-bottom: 32px; }
+        .mb-10 { margin-bottom: 40px; }
+        .mb-12 { margin-bottom: 48px; }
+        .mb-16 { margin-bottom: 64px; }
+
+        .ml-0  { margin-left: 0; }
+        .ml-1  { margin-left: 4px; }
+        .ml-2  { margin-left: 8px; }
+        .ml-3  { margin-left: 12px; }
+        .ml-4  { margin-left: 16px; }
+        .ml-5  { margin-left: 20px; }
+        .ml-6  { margin-left: 24px; }
+        .ml-8  { margin-left: 32px; }
+        .ml-10 { margin-left: 40px; }
+        .ml-12 { margin-left: 48px; }
+        .ml-16 { margin-left: 64px; }
+
+        /* ── Language Toggle ── */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(206, 204, 133, 0.18);
+            border: 1px solid rgba(206, 204, 133, 0.5);
+            border-radius: 2rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .lang-toggle button {
+            background: none;
+            border: none;
+            padding: 0.3rem 0.75rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            color: #aaa;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-toggle button.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 2rem;
+        }
+
+        .lang-toggle button:hover:not(.active) {
+            color: var(--dark);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: flex; }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .villa-img-wrap::before { display: none; }
+
+            .section-title { font-size: 2rem; }
+
+            .polaroid { width: 155px; }
+
+            section { padding: 4.5rem 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .polaroid { width: 140px; padding: 8px 8px 32px; }
+            .polaroid-caption { font-size: 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                Sam <span>&</span> Frida
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home"     data-i18n="nav.home">Home</a></li>
+                <li><a href="#location" data-i18n="nav.location">Location</a></li>
+                <li><a href="#travel"   data-i18n="nav.travel">Travel</a></li>
+                <li><a href="#gallery"  data-i18n="nav.gallery">Gallery</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+            </ul>
+            <div class="lang-toggle" id="langToggle">
+                <button id="btnEn" class="active" onclick="setLang('en')">EN</button>
+                <button id="btnEs"                onclick="setLang('es')">ES</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home"     onclick="closeMenu()" data-i18n="nav.home">Home</a>
+            <a href="#location" onclick="closeMenu()" data-i18n="nav.location">Location</a>
+            <a href="#travel"   onclick="closeMenu()" data-i18n="nav.travel">Travel</a>
+            <a href="#gallery"  onclick="closeMenu()" data-i18n="nav.gallery">Gallery</a>
+            <a href="#rsvp"     onclick="closeMenu()">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- ── Home ── -->
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="hero-names">
+                Sam
+                <span class="amp">&amp;</span>
+                Frida
+            </h1>
+            <div class="hero-divider"></div>
+            <div class="hero-date">
+                <div class="hero-date-day" data-i18n="hero.date">October 2, 2027</div>
+            </div>
+            <p class="hero-location">Playas de Rosarito, Baja California, Mexico</p>
+        </div>
+        <a class="hero-scroll" data-i18n="hero.scroll" href="#location">Scroll</a>
+    </section>
+
+    <!-- ── Location ── -->
+    <section id="location">
+        <div class="section-inner">
+            <p class="section-label" data-i18n="location.label">Where we'll celebrate</p>
+            <h2 class="section-title" data-i18n="location.title">The Venue</h2>
+            <div class="location-grid">
+                <div class="villa-img-wrap">
+                    <img class="villa-sketch"
+                         src="https://hitchedup-user-image-uploads-prod.s3.amazonaws.com/image-uploads/2026/03/03/042040-9204999b-b098-4931-90ef-32fd1891e441-1772511643.JPG"
+                         alt="Villa del Paraiso">
+                </div>
+                <div class="location-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="location.venueLabel">Venue</span>
+                        <span class="detail-value">Villa del Paraiso</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="location.addressLabel">Address</span>
+                        <span class="detail-value">
+                            Carretera Tijuana-Ensenada<br>
+                            Rosarito Km 51.3 Primo Tapia, 22714<br>
+                            Playas de Rosarito, B.C., Mexico
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="location.dateLabel">Date</span>
+                        <span class="detail-value" data-i18n="location.dateValue">Saturday, October 2, 2027</span>
+                    </div>
+                    <a class="map-link"
+                       href="https://maps.google.com/?q=Carretera+Tijuana-Ensenada+Km+51.3+Primo+Tapia+Rosarito"
+                       target="_blank"
+                       rel="noopener"
+                       data-i18n="location.mapLink">
+                        View on Google Maps →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Travel ── -->
+    <section id="travel">
+        <div class="section-inner">
+            <p class="section-label" data-i18n="travel.label">Getting here</p>
+            <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
+            <div class="travel-cards">
+                <div class="travel-card">
+                    <h3 data-i18n="travel.toll.title">Toll Roads</h3>
+                    <p data-i18n="travel.toll.body">Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.</p>
+                </div>
+                <div class="travel-card">
+                    <h3 data-i18n="travel.insurance.title">Mexican Auto Insurance</h3>
+                    <p data-i18n="travel.insurance.body">Please purchase Mexican auto insurance if you drive your vehicle across the border — U.S. insurance typically does not provide coverage in Mexico.</p>
+                </div>
+                <div class="travel-card">
+                    <h3 data-i18n="travel.drive.title">The Scenic Drive</h3>
+                    <p data-i18n="travel.drive.body">The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Gallery ── -->
+    <section id="gallery">
+        <div class="section-inner">
+        </div>
+        <div class="gallery-wall">
+            <div class="gallery-string"></div>
+            <div class="polaroid-wall">
+                <div class="polaroid">
+                    <div class="polaroid-img ph-1"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap1">How it started</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-2"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap2">First adventure</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-3"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap3">The proposal</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-4"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap4">Us</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-5"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap5">Our happy place</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-6"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap6">Better together</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-7"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap7">Adventures ahead</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img ph-8"></div>
+                    <div class="polaroid-caption" data-i18n="gallery.cap8">Forever</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RSVP ── -->
+    <section id="rsvp">
+        <div class="rsvp-inner">
+            <p class="section-label" data-i18n="rsvp.label">Join us</p>
+            <h2 class="section-title">RSVP</h2>
+            <p class="rsvp-text" data-i18n="rsvp.text">
+                We'd love to celebrate this day with you. Please let us know if you'll be joining us in Rosarito for our wedding.
+            </p>
+            <a href="#" class="rsvp-btn" data-i18n="rsvp.btn">RSVP Here</a>
+            <p class="rsvp-note" data-i18n="rsvp.note">Link coming soon</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-names">Sam &amp; Frida</p>
+        <p data-i18n="footer.details">October 2, 2027 &nbsp;·&nbsp; Villa del Paraiso &nbsp;·&nbsp; Rosarito, Mexico</p>
+    </footer>
+
+    <script>
+        // ── i18n ────────────────────────────────────────────────────────
+        const translations = {
+            en: {
+                'nav.home':               'Home',
+                'nav.location':           'Location',
+                'nav.travel':             'Travel',
+                'nav.gallery':            'Gallery',
+                'hero.date':              'October 2, 2027',
+                'hero.scroll':            'Scroll',
+                'location.label':         "Where we'll celebrate",
+                'location.title':         'The Venue',
+                'location.venueLabel':    'Venue',
+                'location.addressLabel':  'Address',
+                'location.dateLabel':     'Date',
+                'location.dateValue':     'Saturday, October 2, 2027',
+                'location.mapLink':       'View on Google Maps →',
+                'travel.label':           'Getting here',
+                'travel.title':           'Travel Details',
+                'travel.toll.title':      'Toll Roads',
+                'travel.toll.body':       "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
+                'travel.insurance.title': 'Mexican Auto Insurance',
+                'travel.insurance.body':  "Please purchase Mexican auto insurance if you drive your vehicle across the border — U.S. insurance typically does not provide coverage in Mexico.",
+                'travel.drive.title':     'The Scenic Drive',
+                'travel.drive.body':      'The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.',
+                'gallery.cap1':           'How it started',
+                'gallery.cap2':           'First adventure',
+                'gallery.cap3':           'The proposal',
+                'gallery.cap4':           'Us',
+                'gallery.cap5':           'Our happy place',
+                'gallery.cap6':           'Better together',
+                'gallery.cap7':           'Adventures ahead',
+                'gallery.cap8':           'Forever',
+                'rsvp.label':             'Join us',
+                'rsvp.text':              "We'd love to celebrate this day with you. Please let us know if you'll be joining us in Rosarito for our wedding.",
+                'rsvp.btn':               'RSVP Here',
+                'rsvp.note':              'Link coming soon',
+                'footer.details':         'October 2, 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, Mexico',
+            },
+            es: {
+                'nav.home':               'Inicio',
+                'nav.location':           'Lugar',
+                'nav.travel':             'Viaje',
+                'nav.gallery':            'Galería',
+                'hero.date':              '2 de octubre de 2027',
+                'hero.scroll':            'Desplazar',
+                'location.label':         'Dónde celebraremos',
+                'location.title':         'El Lugar',
+                'location.venueLabel':    'Lugar',
+                'location.addressLabel':  'Dirección',
+                'location.dateLabel':     'Fecha',
+                'location.dateValue':     'Sábado, 2 de octubre de 2027',
+                'location.mapLink':       'Ver en Google Maps →',
+                'travel.label':           'Cómo llegar',
+                'travel.title':           'Detalles de Viaje',
+                'travel.toll.title':      'Carreteras de Cuota',
+                'travel.toll.body':       'Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.',
+                'travel.insurance.title': 'Seguro de Auto Mexicano',
+                'travel.insurance.body':  'Se recomienda adquirir un seguro de auto mexicano si manejas tu vehículo cruzando la frontera — el seguro estadounidense generalmente no tiene cobertura en México.',
+                'travel.drive.title':     'El Camino Escénico',
+                'travel.drive.body':      'La carretera costera de Tijuana a Rosarito es un hermoso tramo de la costa del Pacífico. Disfruta las vistas — el camino es parte de la experiencia.',
+                'gallery.cap1':           'Cómo empezó',
+                'gallery.cap2':           'Primera aventura',
+                'gallery.cap3':           'La propuesta',
+                'gallery.cap4':           'Nosotros',
+                'gallery.cap5':           'Nuestro lugar feliz',
+                'gallery.cap6':           'Mejor juntos',
+                'gallery.cap7':           'Aventuras por venir',
+                'gallery.cap8':           'Para siempre',
+                'rsvp.label':             'Únete a nosotros',
+                'rsvp.text':              'Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.',
+                'rsvp.btn':               'Confirmar aquí',
+                'rsvp.note':              'Enlace próximamente',
+                'footer.details':         '2 de octubre de 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, México',
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+            document.documentElement.lang = lang;
+        }
+
+        // Apply saved language on load
+        setLang(currentLang);
+
+        // ── Nav / hamburger ─────────────────────────────────────────────
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open', isOpen);
+        });
+
+        function closeMenu() {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const langToggle = document.getElementById('langToggle');
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target) && !langToggle.contains(e.target)) {
+                closeMenu();
+            }
+        });
+    </script>
+
+</body>
+</html>
