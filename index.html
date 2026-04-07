@@ -36,7 +36,8 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(250, 248, 242, 0.96);
+            /* background: rgba(250, 248, 242, 0.96); */
+            background: linear-gradient(rgba(0,0,0,0.24), rgba(0,0,0,0.24));
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(206, 204, 133, 0.35);
         }
@@ -81,7 +82,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: white;
             font-size: 0.78rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -184,7 +185,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 2rem;
-            background: linear-gradient(175deg, #faf8f2 0%, #f3ede0 100%);
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('assets/background.png') center center / cover no-repeat;
             position: relative;
             overflow: hidden;
         }
@@ -195,7 +196,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: min(420px, 80vw);
-            opacity: 0.18;
+            opacity: 0.95;
             pointer-events: none;
             user-select: none;
         }
@@ -232,7 +233,7 @@
             font-size: clamp(4.5rem, 11vw, 9rem);
             font-weight: 400;
             line-height: 1.1;
-            color: var(--dark);
+            color: white;
             margin-bottom: 1.2rem;
             letter-spacing: 0.01em;
             display: flex;
@@ -263,7 +264,7 @@
 
         .hero-location {
             font-size: 1rem;
-            color: #777;
+            color: white;
             letter-spacing: 0.08em;
         }
 
@@ -413,95 +414,46 @@
 
         /* ── Gallery ── */
         #gallery {
-            background: #ddd8cc;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.025) 39px, rgba(0,0,0,0.025) 40px),
-                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.025) 39px, rgba(0,0,0,0.025) 40px);
+            background: linear-gradient(175deg, #f3ede0 0%, #faf8f2 100%);
+            padding-left: 0;
+            padding-top: 0;
+            padding-right: 0;
         }
 
-        #gallery .section-inner {
-            text-align: center;
-        }
-
-        /* String / wire across the wall */
         .gallery-wall {
-            position: relative;
-            margin-top: 1rem;
-            padding-top: 3rem;
+            overflow: hidden;
         }
 
-        .gallery-string {
-            position: absolute;
-            top: 2.2rem;
-            left: 5%;
-            width: 90%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #a09070 5%, #a09070 95%, transparent);
-            opacity: 0.5;
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
 
         .polaroid-wall {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem 1.5rem;
-            padding: 0 1rem 1rem;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            padding: 3rem 1rem 2.5rem;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+        }
+
+        .polaroid-wall:hover {
+            animation-play-state: paused;
         }
 
         .polaroid {
             background: white;
             padding: 10px 10px 36px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08);
-            width: 185px;
+            width: 200px;
+            flex-shrink: 0;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: default;
         }
 
         /* Alternate rotations */
-        .polaroid:nth-child(1)  { transform: rotate(-3deg); }
-        .polaroid:nth-child(2)  { transform: rotate(2.5deg); }
-        .polaroid:nth-child(3)  { transform: rotate(-1.5deg); }
-        .polaroid:nth-child(4)  { transform: rotate(3.5deg); }
-        .polaroid:nth-child(5)  { transform: rotate(-2deg); }
-        .polaroid:nth-child(6)  { transform: rotate(1.5deg); }
-        .polaroid:nth-child(7)  { transform: rotate(-3.5deg); }
-        .polaroid:nth-child(8)  { transform: rotate(2deg); }
-        .polaroid:nth-child(9)  { transform: rotate(-1deg); }
-        .polaroid:nth-child(10) { transform: rotate(3deg); }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.07) !important;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.22);
-            z-index: 10;
-        }
-
-        /* Pushpin */
-        .polaroid::before {
-            content: '';
-            position: absolute;
-            top: -9px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 13px;
-            height: 13px;
-            background: radial-gradient(circle at 38% 32%, #ffaaaa, #cc3333);
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.35);
-            z-index: 2;
-        }
-
-        /* Thread from pin to top of frame */
-        .polaroid::after {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 8px;
-            background: rgba(120, 100, 60, 0.4);
-        }
 
         .polaroid-img {
             width: 100%;
@@ -845,9 +797,9 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <!-- <div class="nav-logo">
                 Sam <span>&</span> Frida
-            </div>
+            </div> -->
             <ul class="nav-links">
                 <li><a href="#home"     data-i18n="nav.home">Home</a></li>
                 <li><a href="#location" data-i18n="nav.location">Location</a></li>
@@ -889,6 +841,54 @@
             <p class="hero-location">Playas de Rosarito, Baja California, Mexico</p>
         </div>
         <a class="hero-scroll" data-i18n="hero.scroll" href="#location">Scroll</a>
+    </section>
+
+    <!-- ── Gallery ── -->
+    <section id="gallery">
+        <div class="gallery-wall">
+            <div class="polaroid-wall">
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_0194.JPG" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Spring 2022</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_0503.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Autumn 2022</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_1449.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Spring 2023</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_1725.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Autumn 2023</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_1786.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Spring 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_3106.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Summer 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_3822.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Autumn 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_7954.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Spring 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_8784.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">Autumn 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="photos/IMG_9732.jpeg" alt="Sam &amp; Frida"></div>
+                    <div class="polaroid-caption">2026</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ── Location ── -->
@@ -948,57 +948,6 @@
                 <div class="travel-card">
                     <h3 data-i18n="travel.drive.title">The Scenic Drive</h3>
                     <p data-i18n="travel.drive.body">The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── Gallery ── -->
-    <section id="gallery">
-        <div class="section-inner">
-        </div>
-        <div class="gallery-wall">
-            <div class="gallery-string"></div>
-            <div class="polaroid-wall">
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_0194.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2022</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_0503.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2022</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_1449.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_1725.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_1786.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_3106.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Summer 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_3822.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_7954.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_8784.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="photos/IMG_9732.jpeg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">2026</div>
                 </div>
             </div>
         </div>
@@ -1138,6 +1087,13 @@
                 closeMenu();
             }
         });
+
+        // Duplicate polaroids for seamless marquee loop
+        const wall = document.querySelector('.polaroid-wall');
+        if (wall) {
+            const originals = Array.from(wall.children);
+            originals.forEach(el => wall.appendChild(el.cloneNode(true)));
+        }
     </script>
 
 </body>
