@@ -1014,12 +1014,14 @@
         // ── i18n ────────────────────────────────────────────────────────
         const translations = {
             en: {
-                'hero.title':              "We're getting married!",    
+                'hero.title':              "We're getting married!",
+                'countdown.year':         'year',    'countdown.years':   'years',
+                'countdown.month':        'month',   'countdown.months':  'months',
+                'countdown.day':          'day',     'countdown.days':    'days',
                 'nav.home':               'Home',
                 'nav.location':           'Location',
                 'nav.travel':             'Travel',
                 'nav.gallery':            'Gallery',
-                'hero.date':              'October 2, 2027',
                 'hero.scroll':            'Scroll',
                 'location.label':         "Where we'll celebrate",
                 'location.title':         'The Details',
@@ -1051,12 +1053,14 @@
                 'footer.details':         'October 2, 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, Mexico',
             },
             es: {
-                'hero.title':              "Nos casamos!",    
+                'hero.title':              "Nos casamos!",
+                'countdown.year':         'año',     'countdown.years':   'años',
+                'countdown.month':        'mes',     'countdown.months':  'meses',
+                'countdown.day':          'día',     'countdown.days':    'días',
                 'nav.home':               'Inicio',
                 'nav.location':           'Lugar',
                 'nav.travel':             'Viaje',
                 'nav.gallery':            'Galería',
-                'hero.date':              '2 de octubre de 2027',
                 'hero.scroll':            'Desplazar',
                 'location.label':         'Dónde celebraremos',
                 'location.title':         'Los Detalles',
@@ -1089,6 +1093,8 @@
             }
         };
 
+        const weddingDate = new Date(2027, 9, 2); // October 2, 2027
+
         let currentLang = localStorage.getItem('lang') || 'en';
 
         function setLang(lang) {
@@ -1097,7 +1103,11 @@
             const t = translations[lang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (t[key] !== undefined) el.textContent = t[key];
+                if (key === 'hero.date') {
+                    el.textContent = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric' }).format(weddingDate);
+                } else if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
             });
             const track = document.querySelector('.lang-track');
             const labelEn = document.querySelector('.lang-en');
@@ -1107,6 +1117,7 @@
             labelEs.classList.toggle('active', lang === 'es');
             document.getElementById('langToggle').setAttribute('aria-checked', lang === 'es');
             document.documentElement.lang = lang;
+            if (typeof formatCountdown === 'function') formatCountdown();
         }
 
         // Apply saved language on load
@@ -1139,7 +1150,7 @@
             const target = new Date('2027-10-02T00:00:00');
             const el = document.getElementById('heroCountdown');
 
-            function formatCountdown() {
+            formatCountdown = function formatCountdown() {
                 const now = new Date();
                 let years  = target.getFullYear() - now.getFullYear();
                 let months = target.getMonth()    - now.getMonth();
@@ -1152,10 +1163,11 @@
                 }
                 if (months < 0) { months += 12; years--; }
 
+                const t = translations[currentLang];
                 const parts = [];
-                if (years  > 0) parts.push(years  + (years  === 1 ? ' year'  : ' years'));
-                if (months > 0) parts.push(months + (months === 1 ? ' month' : ' months'));
-                if (days   > 0) parts.push(days   + (days   === 1 ? ' day'   : ' days'));
+                if (years  > 0) parts.push(years  + ' ' + t[years  === 1 ? 'countdown.year'  : 'countdown.years']);
+                if (months > 0) parts.push(months + ' ' + t[months === 1 ? 'countdown.month' : 'countdown.months']);
+                if (days   > 0) parts.push(days   + ' ' + t[days   === 1 ? 'countdown.day'   : 'countdown.days']);
 
                 el.textContent = parts.join(' | ');
             }
