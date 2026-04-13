@@ -6,6 +6,13 @@
     <title>Sam & Frida | October 2, 2027</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'SamAndFrida';
+            src: url('assets/samandfridafont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         :root {
             --primary: #cecc85;
             --secondary: #d78fa4;
@@ -166,7 +173,7 @@
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'SamAndFrida', cursive;
             font-size: 3rem;
             font-weight: 400;
             color: var(--dark);
@@ -228,21 +235,26 @@
         }
 
         .hero-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(4.5rem, 11vw, 9rem);
+            font-family: 'SamAndFrida', cursive;
+            font-size: clamp(4.5rem, 11vw, 7rem);
             font-weight: 400;
-            line-height: 1.1;
+            line-height: 4rem;
             color: white;
             margin-bottom: 1.2rem;
             letter-spacing: 0.01em;
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
+            align-items: flex-end;
+            display: flex;
         }
 
-        .hero-names .amp {
-            color: var(--secondary);
+        .hero-and {
+            font-family: 'Great Vibes', cursive;
             font-style: italic;
-            display: block;
+            font-size: clamp(1rem, 11vw, 4rem);
+            line-height: 2rem;
+            display: flex;
+            align-items: flex-end;
         }
 
         .hero-divider {
@@ -334,19 +346,19 @@
         }
 
         .villa-img-wrap::before {
-            content: '';
+            /* content: '';
             position: absolute;
             inset: -12px -12px 12px 12px;
             border: 2px solid var(--primary);
             border-radius: 4px;
             opacity: 0.5;
-            z-index: 0;
+            z-index: 0; */
         }
 
         .villa-sketch {
             width: 100%;
             border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            /* box-shadow: 0 10px 40px rgba(0,0,0,0.1); */
             position: relative;
             z-index: 1;
             display: block;
@@ -871,8 +883,10 @@
     <!-- ── Home ── -->
     <section id="home">
         <div class="hero-content">
-            <h1 class="hero-names" data-i18n="hero.title">
-               We're getting married!
+            <h1 class="hero-names">
+                <span class="hero-name">sam</span>
+                <span class="hero-and">and</span>
+                <span class="hero-name">frida</span>
             </h1>
             <div class="hero-divider"></div>
             <div class="hero-wedding-date" data-i18n="hero.date">October 2, 2027</div>
@@ -889,7 +903,7 @@
             <div class="location-grid">
                 <div class="villa-img-wrap">
                     <img class="villa-sketch"
-                         src="https://hitchedup-user-image-uploads-prod.s3.amazonaws.com/image-uploads/2026/03/03/042040-9204999b-b098-4931-90ef-32fd1891e441-1772511643.JPG"
+                         src="assets/drawing-villa.webp"
                          alt="Villa del Paraiso">
                 </div>
                 <div class="location-details">
@@ -1176,6 +1190,7 @@
             setInterval(formatCountdown, 60000);
         })();
 
+        // Duplicate polaroids for seamless marquee loop
         const wall = document.querySelector('.polaroid-wall');
         if (wall) {
             const originals = Array.from(wall.children);
