@@ -438,11 +438,21 @@
         #travel .travel-text,
         #travel ul {
             color: #111;
+            line-height: 1.6;
         }
 
         #travel .travel-text {
             font-size: 1rem;
-            line-height: 1.85;
+            line-height: 1.6;
+        }
+
+        #travel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #travel ul li::before {
+            content: '→ ';
         }
 
 
@@ -941,7 +951,6 @@
                 <span class="hero-and">and</span>
                 <span class="hero-name">frida</span>
             </h1>
-            <div class="hero-divider"></div>
             <div class="hero-wedding-date" data-i18n="hero.date">October 2, 2027</div>
             <div class="hero-countdown" id="heroCountdown"></div>
         </div>
@@ -1041,15 +1050,12 @@
         <div class="section-inner">
             <p class="section-label" data-i18n="travel.label">Coming soon</p>
             <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
-            <p class="travel-text" data-i18n="travel.text">
-                We'll have lots more details soon, but for now, here are the basics:
-                <br/>
-                    → The venus is in Baja California, within driving distance from San Diego.
-                    <br/>
-                    → Housing and transportation recommendations will be provided.
-                    <br/>
-                    → Global Entry/Sentri is highly recommended (details to follow).
-            </p>
+            <p class="travel-text" data-i18n="travel.intro">We'll have lots more details soon, but for now, here are the basics:</p>
+            <ul>
+                <li data-i18n="travel.point1">The venue is in Baja California, within driving distance from San Diego.</li>
+                <li data-i18n="travel.point2">Housing and transportation recommendations will be provided.</li>
+                <li data-i18n="travel.point3">Global Entry/Sentri is highly recommended (details to follow).</li>
+            </ul>
             <!-- <div class="travel-cards">
                 <div class="travel-card">
                     <h3 data-i18n="travel.toll.title">Toll Roads</h3>
@@ -1108,6 +1114,10 @@
                 'location.mapLink':       'View on Google Maps →',
                 'travel.label':           'Coming soon',
                 'travel.title':           'Travel Details',
+                'travel.intro':           "We'll have lots more details soon, but for now, here are the basics:",
+                'travel.point1':          'The venue is in Baja California, within driving distance from San Diego.',
+                'travel.point2':          'Housing and transportation recommendations will be provided.',
+                'travel.point3':          'Global Entry/Sentri is highly recommended (details to follow).',
                 'travel.toll.title':      'Toll Roads',
                 'travel.toll.body':       "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
                 'travel.insurance.title': 'Mexican Auto Insurance',
@@ -1147,6 +1157,10 @@
                 'location.mapLink':       'Ver en Google Maps →',
                 'travel.label':           'Próximamente',
                 'travel.title':           'Detalles de Viaje',
+                'travel.intro':           'Pronto tendremos más detalles, pero por ahora, aquí están los aspectos básicos:',
+                'travel.point1':          'El venue está en Baja California, a poca distancia en auto desde San Diego.',
+                'travel.point2':          'Próximamente se darán recomendaciones de alojamiento y transporte.',
+                'travel.point3':          'Se recomienda ampliamente tener Global Entry/Sentri (más detalles próximamente).',
                 'travel.toll.title':      'Carreteras de Cuota',
                 'travel.toll.body':       'Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.',
                 'travel.insurance.title': 'Seguro de Auto Mexicano',
