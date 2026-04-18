@@ -3,7 +3,10 @@
     "allow": [
       "Bash(git init:*)",
       "Bash(gh repo:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(find /Users/samuelwood/development/wedding-website -type f -name \"*.html\" -o -name \"*.vue\" -o -name \"*.astro\" -o -name \"*.jsx\" -o -name \"*.tsx\" 2>/dev/null | head -20)",
+      "Bash(find /Users/samuelwood/development/wedding-website -name \"*.raw\" 2>/dev/null | cat)",
+      "Bash(sips -s format png \"/Users/samuelwood/development/wedding-website/assets/Wedding Announcement Website \\(Microsite\\) Wedding Announcement Website in Beige Blue Modern Elegance Style \\(1\\).pdf\" --out /tmp/save-the-date-preview.png 2>&1 | head -5)"
     ]
   }
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam & Frida | Save the Date</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#d1c96d',
+                        secondary: '#d78fa4',
+                        dark: '#3a3a3a',
+                        cream: '#faf8f2',
+                    },
+                    fontFamily: {
+                        samandfridafont: ['"SamAndFrida"', 'cursive'],
+                        raleway: ['Raleway', 'sans-serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        greatvibes: ['"Great Vibes"', 'cursive'],
+                    },
+                    letterSpacing: {
+                        'widest-2': '0.22em',
+                        'widest-3': '0.28em',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'SamAndFrida';
+            src: url('assets/samandfridafont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 14px,
+                #f7cdd0 14px,
+                #f7cdd0 18px
+            );
+        }
+        .names {
+            font-size: clamp(4rem, 14vw, 5.5rem);
+            line-height: 0.95;
+        }
+        .names .and {
+            font-size: clamp(2.2rem, 8vw, 3.2rem);
+        }
+        .website-btn {
+            display: inline-block;
+            background-image: url('assets/button-background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 0.7rem 2.4rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center py-12 px-12 bg-white">
+    <div class="bg-primary w-full max-w-[800px] flex flex-col items-center text-center px-14 pt-16 pb-14">
+
+        <p class="font-raleway font-medium tracking-widest-2 uppercase text-dark leading-[1.6rem] mb-16">
+            Save the Date for<br>
+            the Wedding of
+        </p>
+
+        <h1 class="names font-samandfridafont font-normal text-dark tracking-wide">
+            Frida
+        </h1>
+            <span class="and block names font-samandfridafont font-normal text-dark tracking-wide">and</span>
+            <h1 class="names font-samandfridafont font-normal text-dark tracking-wide mb-9">
+
+                Samuel
+            </h1>
+
+        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-3 uppercase text-dark mb-8">
+            Oct 2nd, 2027
+        </p>
+
+        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-2 uppercase text-dark leading-loose mb-7">
+            Villa del Paraiso<br>
+            Rosarito, B.C., Mexico
+        </p>
+
+        <img src="assets/logo.svg" alt="Floral illustration" class="w-28 h-auto mb-9 opacity-85">
+
+        <a href="index.html" class="website-btn font-raleway text-[0.64rem] font-semibold tracking-[0.18em] uppercase text-dark underline underline-offset-2">
+            Click here to go to<br>wedding website
+        </a>
+    </div>
+</body>
+</html>
