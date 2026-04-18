@@ -407,8 +407,44 @@
 
         /* ── Travel ── */
         #travel {
-            background: var(--light-gray);
+            background-image: url('assets/arial-villa.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
+
+        #travel .section-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 14px;
+            width: 646px;
+            max-width: 100%;
+            padding: 3rem 3.5rem;
+            color: black;
+        }
+
+        #travel .section-label {
+            color: var(--secondary);
+        }
+
+        #travel .section-title,
+        #travel .travel-text,
+        #travel ul {
+            color: #111;
+        }
+
+        #travel .travel-text {
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
 
         .travel-cards {
             display: grid;
@@ -450,12 +486,18 @@
         }
 
         .gallery-wall {
-            overflow: hidden;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            cursor: grab;
         }
 
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+        .gallery-wall::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-wall:active {
+            cursor: grabbing;
         }
 
         .polaroid-wall {
@@ -464,11 +506,6 @@
             gap: 1rem;
             padding: 3rem 1rem 2.5rem;
             width: max-content;
-            animation: marquee 90s linear infinite;
-        }
-
-        .polaroid-wall:hover {
-            animation-play-state: paused;
         }
 
         .polaroid {
@@ -835,9 +872,25 @@
             .polaroid { width: 155px; }
 
             section { padding: 4.5rem 1.5rem; }
+
+            #travel {
+                padding: 2rem
+            }
+
+            #travel .section-inner {
+                padding: 2rem 1.35rem;
+            }
         }
 
         @media (max-width: 480px) {
+            #travel {
+                padding: 1.5rem 1.5rem;
+            }
+
+            #travel .section-inner {
+                padding: 1.5rem 1.1rem;
+            }
+
             .polaroid { width: 140px; padding: 8px 8px 32px; }
             .polaroid-caption { font-size: 0.65rem; }
         }
@@ -986,9 +1039,18 @@
     <!-- ── Travel ── -->
     <section id="travel">
         <div class="section-inner">
-            <p class="section-label" data-i18n="travel.label">Getting here</p>
+            <p class="section-label" data-i18n="travel.label">Coming soon</p>
             <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
-            <div class="travel-cards">
+            <p class="travel-text" data-i18n="travel.text">
+                We'll have lots more details soon, but for now, here are the basics:
+                <br/>
+                    → The venus is in Baja California, within driving distance from San Diego.
+                    <br/>
+                    → Housing and transportation recommendations will be provided.
+                    <br/>
+                    → Global Entry/Sentri is highly recommended (details to follow).
+            </p>
+            <!-- <div class="travel-cards">
                 <div class="travel-card">
                     <h3 data-i18n="travel.toll.title">Toll Roads</h3>
                     <p data-i18n="travel.toll.body">Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.</p>
@@ -1001,20 +1063,20 @@
                     <h3 data-i18n="travel.drive.title">The Scenic Drive</h3>
                     <p data-i18n="travel.drive.body">The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <!-- ── RSVP ── -->
     <section id="rsvp">
         <div class="rsvp-inner">
-            <p class="section-label" data-i18n="rsvp.label">Join us</p>
+            <p class="section-label" data-i18n="rsvp.label">Coming Soon</p>
             <h2 class="section-title">RSVP</h2>
             <p class="rsvp-text" data-i18n="rsvp.text">
-                We'd love to celebrate this day with you. Please let us know if you'll be joining us in Rosarito for our wedding.
+                We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!
             </p>
-            <a href="#" class="rsvp-btn" data-i18n="rsvp.btn">RSVP Here</a>
-            <p class="rsvp-note" data-i18n="rsvp.note">Link coming soon</p>
+            <!-- <a href="#" class="rsvp-btn" data-i18n="rsvp.btn">RSVP Here</a> -->
+            <!-- <p class="rsvp-note" data-i18n="rsvp.note">Link coming soon</p> -->
         </div>
     </section>
 
@@ -1044,7 +1106,7 @@
                 'location.dateLabel':     'Date',
                 'location.dateValue':     'Saturday, October 2, 2027',
                 'location.mapLink':       'View on Google Maps →',
-                'travel.label':           'Getting here',
+                'travel.label':           'Coming soon',
                 'travel.title':           'Travel Details',
                 'travel.toll.title':      'Toll Roads',
                 'travel.toll.body':       "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
@@ -1060,8 +1122,8 @@
                 'gallery.cap6':           'Better together',
                 'gallery.cap7':           'Adventures ahead',
                 'gallery.cap8':           'Forever',
-                'rsvp.label':             'Join us',
-                'rsvp.text':              "We'd love to celebrate this day with you. Please let us know if you'll be joining us in Rosarito for our wedding.",
+                'rsvp.label':             'Coming Soon',
+                'rsvp.text':              "We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!",
                 'rsvp.btn':               'RSVP Here',
                 'rsvp.note':              'Link coming soon',
                 'footer.details':         'October 2, 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, Mexico',
@@ -1083,7 +1145,7 @@
                 'location.dateLabel':     'Fecha',
                 'location.dateValue':     'Sábado, 2 de octubre de 2027',
                 'location.mapLink':       'Ver en Google Maps →',
-                'travel.label':           'Cómo llegar',
+                'travel.label':           'Próximamente',
                 'travel.title':           'Detalles de Viaje',
                 'travel.toll.title':      'Carreteras de Cuota',
                 'travel.toll.body':       'Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.',
@@ -1099,7 +1161,7 @@
                 'gallery.cap6':           'Mejor juntos',
                 'gallery.cap7':           'Aventuras por venir',
                 'gallery.cap8':           'Para siempre',
-                'rsvp.label':             'Únete a nosotros',
+                'rsvp.label':             'Próximamente',
                 'rsvp.text':              'Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.',
                 'rsvp.btn':               'Confirmar aquí',
                 'rsvp.note':              'Enlace próximamente',
@@ -1190,12 +1252,60 @@
             setInterval(formatCountdown, 60000);
         })();
 
-        // Duplicate polaroids for seamless marquee loop
-        const wall = document.querySelector('.polaroid-wall');
-        if (wall) {
-            const originals = Array.from(wall.children);
-            originals.forEach(el => wall.appendChild(el.cloneNode(true)));
-        }
+        // Gallery: seamless auto-scroll with hover pause and touch/wheel control
+        (function () {
+            const galleryWall  = document.querySelector('.gallery-wall');
+            const polaroidTrack = document.querySelector('.polaroid-wall');
+            if (!galleryWall || !polaroidTrack) return;
+
+            // Duplicate items for seamless loop
+            Array.from(polaroidTrack.children).forEach(el =>
+                polaroidTrack.appendChild(el.cloneNode(true))
+            );
+
+            const SPEED = 0.6; // px per frame (~36px/s at 60fps)
+            let paused = false;
+            let resumeTimer = null;
+
+            function halfWidth() { return polaroidTrack.scrollWidth / 2; }
+
+            function wrapScroll() {
+                const half = halfWidth();
+                if (galleryWall.scrollLeft >= half) galleryWall.scrollLeft -= half;
+                else if (galleryWall.scrollLeft < 0)  galleryWall.scrollLeft += half;
+            }
+
+            function tick() {
+                wrapScroll(); // always wrap, even while user is scrolling
+                if (!paused) {
+                    galleryWall.scrollLeft += SPEED;
+                }
+                requestAnimationFrame(tick);
+            }
+
+            function pauseFor(ms) {
+                paused = true;
+                clearTimeout(resumeTimer);
+                if (ms > 0) resumeTimer = setTimeout(() => { paused = false; }, ms);
+            }
+
+            // Hover: pause while mouse is over gallery
+            galleryWall.addEventListener('mouseenter', () => pauseFor(0));
+            galleryWall.addEventListener('mouseleave', () => { paused = false; });
+
+            // Wheel: only handle horizontal swipes (deltaX) — let vertical scroll pass through
+            galleryWall.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaX) > 0) {
+                    pauseFor(1500); // resume auto-scroll after 1.5s idle
+                }
+            }, { passive: true });
+
+            // Touch: pause auto-scroll, let browser handle drag natively
+            galleryWall.addEventListener('touchstart', () => pauseFor(0), { passive: true });
+            galleryWall.addEventListener('touchend',   () => pauseFor(1000), { passive: true });
+
+            requestAnimationFrame(tick);
+        })();
     </script>
 
 </body>
