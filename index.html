@@ -451,7 +451,7 @@
 
         .polaroid {
             background: white;
-            padding: 0px 0px 10px 0px;
+            padding: 8px 8px 10px 8px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08);
             width: 300px;
             flex-shrink: 0;
@@ -472,9 +472,28 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
+        .polaroid-img video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
+        /* ── Animated (stop-motion) polaroids ── */
+        .polaroid--animated .polaroid-img {
+            position: relative;
+        }
+
+        .polaroid--animated .polaroid-img img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
 
         .polaroid-caption {
             text-align: center;
@@ -653,6 +672,102 @@
             .polaroid { width: 140px; padding: 8px 8px 32px; }
             .polaroid-caption { font-size: 0.65rem; }
         }
+
+        /* ── Gallery Modal ── */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.93);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .gallery-modal.open {
+            display: flex;
+        }
+
+        .gallery-modal-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90vw;
+            max-height: 80vh;
+        }
+
+        .gallery-modal-media img,
+        .gallery-modal-media video {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 2px;
+        }
+
+        .gallery-modal-caption {
+            margin-top: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .gallery-modal-close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            z-index: 1;
+        }
+
+        .gallery-modal-close:hover { opacity: 1; }
+
+        .gallery-modal-prev,
+        .gallery-modal-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .gallery-modal-prev { left: 1.25rem; }
+        .gallery-modal-next { right: 1.25rem; }
+
+        .gallery-modal-prev:hover,
+        .gallery-modal-next:hover { background: rgba(255, 255, 255, 0.18); }
+
+        .gallery-modal-prev:active,
+        .gallery-modal-next:active {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-50%) scale(0.88);
+            transition: background 0.05s, transform 0.05s;
+        }
+
+        @media (max-width: 480px) {
+            .gallery-modal-prev { left: 0.5rem; }
+            .gallery-modal-next { right: 0.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -748,47 +863,152 @@
 
     <!-- ── Gallery ── -->
     <section id="gallery">
+        <div style="text-align: center; padding: 2.5rem 2rem 0;">
+            <h2 class="section-title">A bit of us</h2>
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #5a5a3a;">Here's some of our favorite memories of us</p>
+        </div>
         <div class="gallery-wall">
             <div class="polaroid-wall">
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/aneesh.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2022</div>
+                    <div class="polaroid-img"><img src="gallery/April2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">April 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/shrusti.jpg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2022</div>
+                    <div class="polaroid-img"><img src="gallery/April2023-1.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">April 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/aneesh.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2023</div>
+                    <div class="polaroid-img"><img src="gallery/June2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">June 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/shrusti.jpg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2023</div>
+                    <div class="polaroid-img"><img src="gallery/LA2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Los Angeles, 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/aneesh.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2024</div>
+                    <div class="polaroid-img"><img src="gallery/Sept2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">September 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/shrusti.jpg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Summer 2024</div>
+                    <div class="polaroid-img"><img src="gallery/10pmSonic2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">10pm Sonic, 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/aneesh.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2024</div>
+                    <div class="polaroid-img"><img src="gallery/Dec2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">December 2023</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/shrusti.jpg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Spring 2025</div>
+                    <div class="polaroid-img"><img src="gallery/Sams28thBirthday.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Sam's 28th Birthday</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/aneesh.JPG" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">Autumn 2025</div>
+                    <div class="polaroid-img"><img src="gallery/Yosemite2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Yosemite, 2024</div>
                 </div>
                 <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/shrusti.jpg" alt="Sam &amp; Frida"></div>
-                    <div class="polaroid-caption">2026</div>
+                    <div class="polaroid-img"><img src="gallery/OurFirstMoose2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Our First Moose, 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/March2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">March 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img">
+                        <video autoplay muted loop playsinline>
+                            <source src="gallery/videos/Europe2024.MOV">
+                        </video>
+                    </div>
+                    <div class="polaroid-caption">Europe, 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/Sept2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">September 2024</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/BigSurOct2024-2.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Big Sur, Oct 2024</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-3">
+                    <div class="polaroid-img">
+                        <img src="gallery/stop-motion/October2024/greendresskiss1.jpeg" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/October2024/greendresskiss2.jpeg" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/October2024/greendresskiss3.jpeg" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">October 2024</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-2">
+                    <div class="polaroid-img">
+                        <img src="gallery/stop-motion/Nov2024/1.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/Nov2024/2.JPG" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">November 2024</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-2">
+                    <div class="polaroid-img">
+                        <img src="gallery/negative10DegInIdaho.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/negative10DegInIdaho2.JPG" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">-10° in Idaho</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-2">
+                    <div class="polaroid-img">
+                        <img src="gallery/stop-motion/germany2025/Germany2025.jpeg" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/germany2025/Germany2025-2.JPG" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">Germany, 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/Sweden2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Sweden, 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/CostaRica2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Costa Rica, 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/CostaRica2025.2.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Costa Rica, 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/May2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">May 2025</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-3">
+                    <div class="polaroid-img">
+                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-1.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-2.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-3.jpeg" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">Glacier, June 2025</div>
+                </div>
+                <div class="polaroid polaroid--animated polaroid--animated-3">
+                    <div class="polaroid-img">
+                        <img src="gallery/stop-motion/June2025-2/1.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/June2025-2/2.JPG" alt="Sam &amp; Frida">
+                        <img src="gallery/stop-motion/June2025-2/3.JPG" alt="Sam &amp; Frida">
+                    </div>
+                    <div class="polaroid-caption">June 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/Sept2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">September 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img">
+                        <video autoplay muted loop playsinline>
+                            <source src="gallery/videos/sept302025.MOV">
+                        </video>
+                    </div>
+                    <div class="polaroid-caption">September 30, 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/Oct2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">October 2025</div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-img"><img src="gallery/Fridas28th-Feb2026.jpeg" alt="Sam &amp; Frida" loading="lazy"></div>
+                    <div class="polaroid-caption">Frida's 28th, Feb 2026</div>
                 </div>
             </div>
         </div>
@@ -840,6 +1060,15 @@
         <p class="footer-names">Sam &amp; Frida</p>
         <p data-i18n="footer.details">October 2, 2027 &nbsp;·&nbsp; Villa del Paraiso &nbsp;·&nbsp; Rosarito, Mexico</p>
     </footer>
+
+    <!-- ── Gallery Modal ── -->
+    <div id="galleryModal" class="gallery-modal" role="dialog" aria-modal="true">
+        <button class="gallery-modal-close" id="galleryModalClose" aria-label="Close">&times;</button>
+        <button class="gallery-modal-prev" id="galleryModalPrev" aria-label="Previous">&#8592;</button>
+        <div class="gallery-modal-media" id="galleryModalMedia"></div>
+        <div class="gallery-modal-caption" id="galleryModalCaption"></div>
+        <button class="gallery-modal-next" id="galleryModalNext" aria-label="Next">&#8594;</button>
+    </div>
 
     <script>
         // ── i18n ────────────────────────────────────────────────────────
@@ -1021,13 +1250,114 @@
             const polaroidTrack = document.querySelector('.polaroid-wall');
             if (!galleryWall || !polaroidTrack) return;
 
-            // Duplicate items for seamless loop
-            Array.from(polaroidTrack.children).forEach(el =>
-                polaroidTrack.appendChild(el.cloneNode(true))
-            );
+            // Stamp slide index on originals before cloning
+            const originals = Array.from(polaroidTrack.children);
+            originals.forEach((el, i) => el.dataset.slideIndex = i);
+
+            // Duplicate items for seamless loop (clones inherit data-slide-index)
+            originals.forEach(el => polaroidTrack.appendChild(el.cloneNode(true)));
+
+            // Stop-motion cycling: swap z-index so all frames are always rendered
+            const FRAME_MS = 900;
+            const LAST_MS  = 2800; // last frame lingers longer (3+ frame sets only)
+            const STAGGER  = 400; // ms offset between each animated polaroid
+            polaroidTrack.querySelectorAll('.polaroid--animated').forEach((polaroid, i) => {
+                const imgs = Array.from(polaroid.querySelectorAll('.polaroid-img img'));
+                if (imgs.length < 2) return;
+                let current = 0;
+                imgs[0].style.zIndex = 1;
+                function nextFrame() {
+                    imgs[current].style.zIndex = 0;
+                    current = (current + 1) % imgs.length;
+                    imgs[current].style.zIndex = 1;
+                    const isLast = imgs.length > 2 && current === imgs.length - 1;
+                    setTimeout(nextFrame, isLast ? LAST_MS : FRAME_MS);
+                }
+                setTimeout(nextFrame, FRAME_MS + (i * STAGGER));
+            });
+
+            // ── Modal ────────────────────────────────────────────────────
+            const modal       = document.getElementById('galleryModal');
+            const modalMedia  = document.getElementById('galleryModalMedia');
+            const modalCaption = document.getElementById('galleryModalCaption');
+            let currentSlide  = 0;
+
+            function getSlideMedia(index) {
+                const el = originals[index];
+                const caption = el.querySelector('.polaroid-caption')?.textContent || '';
+                const videoSrc = el.querySelector('video source')?.getAttribute('src');
+                if (videoSrc) return { type: 'video', src: videoSrc, caption };
+                if (el.classList.contains('polaroid--animated')) {
+                    const imgs = Array.from(el.querySelectorAll('.polaroid-img img'));
+                    const active = imgs.find(img => img.style.zIndex === '1') || imgs[0];
+                    return { type: 'image', src: active.src, caption };
+                }
+                return { type: 'image', src: el.querySelector('.polaroid-img img').src, caption };
+            }
+
+            function preloadAdjacent(index) {
+                [-1, 1].forEach(offset => {
+                    const adj = (index + offset + originals.length) % originals.length;
+                    const { type, src } = getSlideMedia(adj);
+                    if (type === 'image') { new Image().src = src; }
+                });
+            }
+
+            function showSlide(index) {
+                currentSlide = (index + originals.length) % originals.length;
+                const { type, src, caption } = getSlideMedia(currentSlide);
+                modalMedia.innerHTML = '';
+                if (type === 'video') {
+                    const v = document.createElement('video');
+                    v.src = src;
+                    v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true; v.controls = true;
+                    modalMedia.appendChild(v);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    modalMedia.appendChild(img);
+                }
+                modalCaption.textContent = caption;
+                preloadAdjacent(currentSlide);
+            }
+
+            function openModal(index) {
+                showSlide(index);
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modalMedia.innerHTML = '';
+                document.body.style.overflow = '';
+            }
+
+            // Click on any polaroid (originals + clones)
+            polaroidTrack.addEventListener('click', e => {
+                const polaroid = e.target.closest('.polaroid[data-slide-index]');
+                if (!polaroid) return;
+                openModal(parseInt(polaroid.dataset.slideIndex));
+            });
+
+            document.getElementById('galleryModalClose').addEventListener('click', closeModal);
+            document.getElementById('galleryModalPrev').addEventListener('click', () => showSlide(currentSlide - 1));
+            document.getElementById('galleryModalNext').addEventListener('click', () => showSlide(currentSlide + 1));
+
+            // Close on backdrop click
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+            // Keyboard nav
+            document.addEventListener('keydown', e => {
+                if (!modal.classList.contains('open')) return;
+                if (e.key === 'Escape')      closeModal();
+                if (e.key === 'ArrowLeft')   showSlide(currentSlide - 1);
+                if (e.key === 'ArrowRight')  showSlide(currentSlide + 1);
+            });
 
             const SPEED = 0.6; // px per frame (~36px/s at 60fps)
-            let paused = false;
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            let paused = isMobile;
             let resumeTimer = null;
 
             function halfWidth() { return polaroidTrack.scrollWidth / 2; }
