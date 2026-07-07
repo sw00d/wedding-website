@@ -1284,7 +1284,7 @@
             Housing and transportation recommendations will be provided.
           </li>
           <li data-i18n="travel.point3">
-            Global Entry/Sentri is highly recommended (details to follow).
+            Global Entry/Sentri is highly recommended. <a href='https://ttp.dhs.gov/' target='_blank' rel='noopener'>Click here for more information.</a>
           </li>
         </ul>
         <!-- <div class="travel-cards">
@@ -1391,7 +1391,7 @@
           "travel.point2":
             "Housing and transportation recommendations will be provided.",
           "travel.point3":
-            "Global Entry/Sentri is highly recommended (details to follow).",
+            "Global Entry/Sentri is highly recommended. <a href='https://ttp.dhs.gov/' target='_blank' rel='noopener'>Click here for more information.</a>",
           "travel.toll.title": "Toll Roads",
           "travel.toll.body":
             "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
@@ -1448,7 +1448,7 @@
           "travel.point2":
             "Próximamente se darán recomendaciones de alojamiento y transporte.",
           "travel.point3":
-            "Se recomienda ampliamente tener Global Entry/Sentri (más detalles próximamente).",
+            "Se recomienda ampliamente tener Global Entry/Sentri. <a href='https://ttp.dhs.gov/' target='_blank' rel='noopener'>Haz clic aquí para más información.</a>",
           "travel.toll.title": "Carreteras de Cuota",
           "travel.toll.body":
             "Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.",
@@ -1459,7 +1459,8 @@
           "travel.drive.body":
             "La carretera costera de Tijuana a Rosarito es un hermoso tramo de la costa del Pacífico. Disfruta las vistas — el camino es parte de la experiencia.",
           "gallery.title": "Un poco de nosotros",
-          "gallery.subtitle": "Aquí están algunos de nuestros recuerdos favoritos",
+          "gallery.subtitle":
+            "Aquí están algunos de nuestros recuerdos favoritos",
           "gallery.cap1": "Cómo empezó",
           "gallery.cap2": "Primera aventura",
           "gallery.cap3": "La propuesta",
@@ -1495,7 +1496,7 @@
               day: "numeric",
             }).format(weddingDate);
           } else if (t[key] !== undefined) {
-            el.textContent = t[key];
+            el.innerHTML = t[key];
           }
         });
         const track = document.querySelector(".lang-track");
