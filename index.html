@@ -1,1031 +1,1293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sam & Frida | October 2, 2027</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="global.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="global.css" />
     <style>
-        /* ── Navigation ── */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            /* background: rgba(250, 248, 242, 0.96); */
-            background: #cecc85;
-        }
+      /* ── Navigation ── */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        /* background: rgba(250, 248, 242, 0.96); */
+        background: #cecc85;
+      }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1.1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .nav-logo {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.7rem;
-            color: var(--dark);
-            letter-spacing: 0.02em;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .nav-logo {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.7rem;
+        color: var(--dark);
+        letter-spacing: 0.02em;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .nav-bouquet {
-            height: 36px;
-            width: auto;
-            display: block;
-            opacity: 0.75;
-        }
+      .nav-bouquet {
+        height: 36px;
+        width: auto;
+        display: block;
+        opacity: 0.75;
+      }
 
-        .nav-logo span {
-            color: var(--secondary);
-            font-style: italic;
+      .nav-logo span {
+        color: var(--secondary);
+        font-style: italic;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 400;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--dark);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: rgba(250, 248, 242, 0.98);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .mobile-menu.open {
+        max-height: 320px;
+      }
+
+      .mobile-menu a {
+        text-decoration: none;
+        color: var(--dark);
+        font-size: 0.82rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.9rem 2rem;
+        display: block;
+        border-bottom: 1px solid rgba(206, 204, 133, 0.2);
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .mobile-menu a:hover {
+        background: rgba(206, 204, 133, 0.12);
+        color: var(--secondary);
+      }
+
+      /* ── Hero ── */
+      #home {
+        min-height: calc(100vh - 59px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 2rem;
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+          url("assets/bg.JPG") center center / cover no-repeat;
+        position: relative;
+        top: 59px;
+        overflow: hidden;
+      }
+
+      .hero-bouquet-bg {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(420px, 80vw);
+        opacity: 0.95;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-date {
+        margin-bottom: 2rem;
+      }
+
+      .hero-date-day {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 300;
+        color: var(--secondary);
+        line-height: 1;
+        letter-spacing: 0.06em;
+      }
+
+      .hero-date-full {
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: #777;
+        font-weight: 500;
+        margin-top: 0.4rem;
+      }
+
+      .hero-names {
+        font-family: "SamAndFrida", cursive;
+        font-size: clamp(4.5rem, 11vw, 7rem);
+        font-weight: 400;
+        line-height: 4rem;
+        color: white;
+        margin-bottom: 1.2rem;
+        letter-spacing: 0.01em;
+        display: flex;
+        gap: 2rem;
+        align-items: flex-end;
+        display: flex;
+      }
+
+      .hero-and {
+        font-family: "Great Vibes", cursive;
+        font-style: italic;
+        font-size: clamp(1rem, 11vw, 4rem);
+        line-height: 2rem;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .hero-divider {
+        width: 56px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        margin: 0 auto 1.8rem;
+      }
+
+      .hero-wedding-date {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(4.5rem, 2.8vw, 1.5rem);
+        font-weight: 400;
+        color: white;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.4rem;
+      }
+
+      .hero-countdown {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 2vw, 1.1rem);
+        font-weight: 300;
+        color: white;
+        letter-spacing: 0.04em;
+        opacity: 0.75;
+        margin-bottom: 1.6rem;
+      }
+
+      .hero-sub {
+        font-size: 0.88rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #666;
+        font-weight: 300;
+        margin-bottom: 0.6rem;
+      }
+
+      .hero-location {
+        font-size: 1rem;
+        color: white;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-scroll {
+        text-decoration: none;
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: #fff;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        animation: bounce 2s infinite;
+      }
+
+      .hero-scroll::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 36px;
+        background: linear-gradient(to bottom, #bbb, transparent);
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* ── Location ── */
+      #location {
+        padding-top: 160px;
+        background: white;
+      }
+
+      .location-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+
+      .villa-img-wrap {
+        position: relative;
+      }
+
+      .villa-sketch {
+        width: 100%;
+        border-radius: 4px;
+        /* box-shadow: 0 10px 40px rgba(0,0,0,0.1); */
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+
+      .location-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .detail-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        font-weight: 700;
+      }
+
+      .detail-value {
+        font-size: 1rem;
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        transition: gap 0.2s;
+        margin-top: 0.5rem;
+      }
+
+      .map-link:hover {
+        gap: 0.85rem;
+      }
+
+      /* ── Travel ── */
+      #travel {
+        background-image: url("assets/arial-villa.webp");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      #travel .section-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 14px;
+        width: 646px;
+        max-width: 100%;
+        padding: 3rem 3.5rem;
+        color: black;
+      }
+
+      #travel .section-label {
+        color: var(--secondary);
+      }
+
+      #travel .section-title,
+      #travel .travel-text,
+      #travel ul {
+        color: #111;
+        line-height: 1.6;
+      }
+
+      #travel .travel-text {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      #travel ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      #travel ul li::before {
+        content: "→ ";
+      }
+
+      .travel-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+
+      .travel-card {
+        background: white;
+        padding: 2rem 1.75rem;
+        border-radius: 6px;
+        border-top: 3px solid var(--primary);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
+      }
+
+      .travel-card-icon {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .travel-card h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        margin-bottom: 0.65rem;
+      }
+
+      .travel-card p {
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: #666;
+      }
+
+      /* ── Gallery ── */
+      #gallery {
+        background: #cecc85;
+        padding: 20px 0px;
+      }
+
+      .gallery-wall {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        cursor: grab;
+      }
+
+      .gallery-wall::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-wall:active {
+        cursor: grabbing;
+      }
+
+      .polaroid-wall {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        padding: 3rem 1rem 2.5rem;
+        width: max-content;
+      }
+
+      .polaroid {
+        background: white;
+        padding: 8px 8px 10px 8px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18),
+          0 2px 6px rgba(0, 0, 0, 0.08);
+        width: 300px;
+        flex-shrink: 0;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default;
+      }
+
+      /* Alternate rotations */
+
+      .polaroid-img {
+        width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
+      }
+
+      .polaroid-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .polaroid-img video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* ── Animated (stop-motion) polaroids ── */
+      .polaroid--animated .polaroid-img {
+        position: relative;
+      }
+
+      .polaroid--animated .polaroid-img img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .polaroid-caption {
+        text-align: center;
+        margin-top: 8px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 0.72rem;
+        color: #777;
+        line-height: 1.4;
+      }
+
+      /* ── RSVP ── */
+      #rsvp {
+        background: white;
+        text-align: center;
+      }
+
+      .rsvp-inner {
+        max-width: 580px;
+        margin: 0 auto;
+      }
+
+      .rsvp-bouquet {
+        width: 130px;
+        display: block;
+        margin: 0 auto 2rem;
+        opacity: 0.82;
+      }
+
+      .rsvp-text {
+        font-size: 1rem;
+        line-height: 1.85;
+        color: #777;
+        margin-bottom: 2.5rem;
+      }
+
+      .rsvp-btn {
+        display: inline-block;
+        background: var(--secondary);
+        color: white;
+        padding: 1rem 3.2rem;
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 3rem;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(215, 143, 164, 0.35);
+      }
+
+      .rsvp-btn:hover {
+        background: #c77d94;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(215, 143, 164, 0.45);
+      }
+
+      .rsvp-note {
+        margin-top: 1.4rem;
+        font-size: 0.78rem;
+        color: #777;
+        letter-spacing: 0.1em;
+      }
+
+      /* ── Footer ── */
+      footer {
+        background: var(--dark);
+        color: #888;
+        text-align: center;
+        padding: 2.8rem 2rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+      }
+
+      .footer-names {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 0.6rem;
+      }
+
+      /* ── Language Toggle ── */
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        flex-shrink: 0;
+        user-select: none;
+      }
+
+      .lang-label {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.25s;
+      }
+
+      .lang-label.active {
+        color: white;
+      }
+
+      .lang-track {
+        width: 44px;
+        height: 24px;
+        background: #ce779073;
+        /* border: 1.5px solid rgba(206, 204, 133, 0.75); */
+        border-radius: 999px;
+        position: relative;
+        transition: background 0.25s;
+        flex-shrink: 0;
+      }
+
+      .lang-track.es {
+        background: #ce779073;
+      }
+
+      .lang-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 18px;
+        height: 18px;
+        background: #ce7790;
+        border-radius: 50%;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .lang-track.es .lang-thumb {
+        transform: translateX(20px);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .hero-wedding-date {
+          font-size: clamp(1rem, 11vw, 9rem);
         }
 
         .nav-links {
-            display: flex;
-            gap: 2.2rem;
-            list-style: none;
+          display: none;
         }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 0.78rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 400;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* Hamburger */
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
+          display: flex;
         }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--dark);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
         .mobile-menu {
-            display: none;
-            flex-direction: column;
-            background: rgba(250, 248, 242, 0.98);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-        }
-
-        .mobile-menu.open {
-            max-height: 320px;
-        }
-
-        .mobile-menu a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 0.82rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 0.9rem 2rem;
-            display: block;
-            border-bottom: 1px solid rgba(206, 204, 133, 0.2);
-            transition: background 0.15s, color 0.15s;
-        }
-
-        .mobile-menu a:hover {
-            background: rgba(206, 204, 133, 0.12);
-            color: var(--secondary);
-        }
-
-        /* ── Hero ── */
-        #home {
-            min-height: calc(100vh - 59px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 2rem;
-            background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('assets/bg.JPG') center center / cover no-repeat;
-            position: relative;
-            top: 59px;
-            overflow: hidden;
-        }
-
-        .hero-bouquet-bg {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(420px, 80vw);
-            opacity: 0.95;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-date {
-            margin-bottom: 2rem;
-        }
-
-        .hero-date-day {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 300;
-            color: var(--secondary);
-            line-height: 1;
-            letter-spacing: 0.06em;
-        }
-
-        .hero-date-full {
-            font-size: 0.72rem;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: #777;
-            font-weight: 500;
-            margin-top: 0.4rem;
-        }
-
-        .hero-names {
-            font-family: 'SamAndFrida', cursive;
-            font-size: clamp(4.5rem, 11vw, 7rem);
-            font-weight: 400;
-            line-height: 4rem;
-            color: white;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.01em;
-            display: flex;
-            gap: 2rem;
-            align-items: flex-end;
-            display: flex;
-        }
-
-        .hero-and {
-            font-family: 'Great Vibes', cursive;
-            font-style: italic;
-            font-size: clamp(1rem, 11vw, 4rem);
-            line-height: 2rem;
-            display: flex;
-            align-items: flex-end;
-        }
-
-        .hero-divider {
-            width: 56px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            margin: 0 auto 1.8rem;
-        }
-
-        .hero-wedding-date {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(4.5rem, 2.8vw, 1.5rem);
-            font-weight: 400;
-            color: white;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.4rem;
-        }
-
-        .hero-countdown {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 2vw, 1.1rem);
-            font-weight: 300;
-            color: white;
-            letter-spacing: 0.04em;
-            opacity: 0.75;
-            margin-bottom: 1.6rem;
-        }
-
-        .hero-sub {
-            font-size: 0.88rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #666;
-            font-weight: 300;
-            margin-bottom: 0.6rem;
-        }
-
-        .hero-location {
-            font-size: 1rem;
-            color: white;
-            letter-spacing: 0.08em;
-        }
-
-        .hero-scroll {
-            text-decoration: none;
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            color: #fff;
-            font-size: 0.68rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            animation: bounce 2s infinite;
-        }
-
-        .hero-scroll::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 36px;
-            background: linear-gradient(to bottom, #bbb, transparent);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(6px); }
-        }
-
-        /* ── Location ── */
-        #location {
-            padding-top: 160px;
-            background: white;
+          display: flex;
         }
 
         .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4.5rem;
-            align-items: center;
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
         }
 
-        .villa-img-wrap {
-            position: relative;
+        .villa-img-wrap::before {
+          display: none;
         }
 
-        .villa-sketch {
-            width: 100%;
-            border-radius: 4px;
-            /* box-shadow: 0 10px 40px rgba(0,0,0,0.1); */
-            position: relative;
-            z-index: 1;
-            display: block;
-        }
-
-        .location-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.6rem;
-        }
-
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .detail-label {
-            font-size: 0.68rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        .detail-value {
-            font-size: 1rem;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            transition: gap 0.2s;
-            margin-top: 0.5rem;
-        }
-
-        .map-link:hover { gap: 0.85rem; }
-
-        /* ── Travel ── */
-        #travel {
-            background-image: url('assets/arial-villa.webp');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        #travel .section-inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 14px;
-            width: 646px;
-            max-width: 100%;
-            padding: 3rem 3.5rem;
-            color: black;
-        }
-
-        #travel .section-label {
-            color: var(--secondary);
-        }
-
-        #travel .section-title,
-        #travel .travel-text,
-        #travel ul {
-            color: #111;
-            line-height: 1.6;
-        }
-
-        #travel .travel-text {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        #travel ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #travel ul li::before {
-            content: '→ ';
-        }
-
-
-        .travel-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .travel-card {
-            background: white;
-            padding: 2rem 1.75rem;
-            border-radius: 6px;
-            border-top: 3px solid var(--primary);
-            box-shadow: 0 2px 18px rgba(0,0,0,0.05);
-        }
-
-        .travel-card-icon {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .travel-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
-            margin-bottom: 0.65rem;
-        }
-
-        .travel-card p {
-            font-size: 0.88rem;
-            line-height: 1.75;
-            color: #666;
-        }
-
-        /* ── Gallery ── */
-        #gallery {
-            background: #cecc85;
-            padding: 20px 0px;
-        }
-
-        .gallery-wall {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            scrollbar-width: none;
-            cursor: grab;
-        }
-
-        .gallery-wall::-webkit-scrollbar {
-            display: none;
-        }
-
-        .gallery-wall:active {
-            cursor: grabbing;
-        }
-
-        .polaroid-wall {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            padding: 3rem 1rem 2.5rem;
-            width: max-content;
+        .section-title {
+          font-size: 2rem;
         }
 
         .polaroid {
-            background: white;
-            padding: 8px 8px 10px 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08);
-            width: 300px;
-            flex-shrink: 0;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
+          width: 155px;
         }
 
-        /* Alternate rotations */
-
-        .polaroid-img {
-            width: 100%;
-            aspect-ratio: 1;
-            overflow: hidden;
+        section {
+          padding: 4.5rem 1.5rem;
         }
 
-        .polaroid-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        #travel {
+          padding: 2rem;
         }
 
-        .polaroid-img video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        #travel .section-inner {
+          padding: 2rem 1.35rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #travel {
+          padding: 1.5rem 1.5rem;
         }
 
-        /* ── Animated (stop-motion) polaroids ── */
-        .polaroid--animated .polaroid-img {
-            position: relative;
+        #travel .section-inner {
+          padding: 1.5rem 1.1rem;
         }
 
-        .polaroid--animated .polaroid-img img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 0;
+        .polaroid {
+          width: 140px;
+          padding: 8px 8px 32px;
         }
-
         .polaroid-caption {
-            text-align: center;
-            margin-top: 8px;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 0.72rem;
-            color: #777;
-            line-height: 1.4;
+          font-size: 0.65rem;
         }
+      }
 
-        /* ── RSVP ── */
-        #rsvp {
-            background: white;
-            text-align: center;
+      /* ── Gallery Modal ── */
+      .gallery-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.93);
+        z-index: 3000;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .gallery-modal.open {
+        display: flex;
+      }
+
+      .gallery-modal-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 90vw;
+        max-height: 80vh;
+      }
+
+      .gallery-modal-media img,
+      .gallery-modal-media video {
+        max-width: 90vw;
+        max-height: 80vh;
+        object-fit: contain;
+        display: block;
+        border-radius: 2px;
+      }
+
+      .gallery-modal-caption {
+        margin-top: 1.2rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+      }
+
+      .gallery-modal-close {
+        position: fixed;
+        top: 1.25rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        z-index: 1;
+      }
+
+      .gallery-modal-close:hover {
+        opacity: 1;
+      }
+
+      .gallery-modal-prev,
+      .gallery-modal-next {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+
+      .gallery-modal-prev {
+        left: 1.25rem;
+      }
+      .gallery-modal-next {
+        right: 1.25rem;
+      }
+
+      .gallery-modal-prev:hover,
+      .gallery-modal-next:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .gallery-modal-prev:active,
+      .gallery-modal-next:active {
+        background: rgba(255, 255, 255, 0.35);
+        transform: translateY(-50%) scale(0.88);
+        transition: background 0.05s, transform 0.05s;
+      }
+
+      @media (max-width: 480px) {
+        .gallery-modal-prev {
+          left: 0.5rem;
         }
-
-        .rsvp-inner {
-            max-width: 580px;
-            margin: 0 auto;
-        }
-
-        .rsvp-bouquet {
-            width: 130px;
-            display: block;
-            margin: 0 auto 2rem;
-            opacity: 0.82;
-        }
-
-        .rsvp-text {
-            font-size: 1rem;
-            line-height: 1.85;
-            color: #777;
-            margin-bottom: 2.5rem;
-        }
-
-        .rsvp-btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 1rem 3.2rem;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            font-weight: 700;
-            border-radius: 3rem;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(215, 143, 164, 0.35);
-        }
-
-        .rsvp-btn:hover {
-            background: #c77d94;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 28px rgba(215, 143, 164, 0.45);
-        }
-
-        .rsvp-note {
-            margin-top: 1.4rem;
-            font-size: 0.78rem;
-            color: #777;
-            letter-spacing: 0.1em;
-        }
-
-        /* ── Footer ── */
-        footer {
-            background: var(--dark);
-            color: #888;
-            text-align: center;
-            padding: 2.8rem 2rem;
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 0.6rem;
-        }
-
-        /* ── Language Toggle ── */
-        .lang-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            flex-shrink: 0;
-            user-select: none;
-        }
-
-        .lang-label {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            color: rgba(255,255,255,0.5);
-            transition: color 0.25s;
-        }
-
-        .lang-label.active {
-            color: white;
-        }
-
-        .lang-track {
-            width: 44px;
-            height: 24px;
-            background: #ce779073;
-            /* border: 1.5px solid rgba(206, 204, 133, 0.75); */
-            border-radius: 999px;
-            position: relative;
-            transition: background 0.25s;
-            flex-shrink: 0;
-        }
-
-        .lang-track.es {
-            background: #ce779073;
-
-        }
-
-        .lang-thumb {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            background: #ce7790;
-            border-radius: 50%;
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-        }
-
-        .lang-track.es .lang-thumb {
-            transform: translateX(20px);
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 768px) {
-            .hero-wedding-date { font-size: clamp(1rem, 11vw, 9rem); }
-
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .mobile-menu { display: flex; }
-
-            .location-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .villa-img-wrap::before { display: none; }
-
-            .section-title { font-size: 2rem; }
-
-            .polaroid { width: 155px; }
-
-            section { padding: 4.5rem 1.5rem; }
-
-            #travel {
-                padding: 2rem
-            }
-
-            #travel .section-inner {
-                padding: 2rem 1.35rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #travel {
-                padding: 1.5rem 1.5rem;
-            }
-
-            #travel .section-inner {
-                padding: 1.5rem 1.1rem;
-            }
-
-            .polaroid { width: 140px; padding: 8px 8px 32px; }
-            .polaroid-caption { font-size: 0.65rem; }
-        }
-
-        /* ── Gallery Modal ── */
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.93);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .gallery-modal.open {
-            display: flex;
-        }
-
-        .gallery-modal-media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 90vw;
-            max-height: 80vh;
-        }
-
-        .gallery-modal-media img,
-        .gallery-modal-media video {
-            max-width: 90vw;
-            max-height: 80vh;
-            object-fit: contain;
-            display: block;
-            border-radius: 2px;
-        }
-
-        .gallery-modal-caption {
-            margin-top: 1.2rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1rem;
-            letter-spacing: 0.04em;
-        }
-
-        .gallery-modal-close {
-            position: fixed;
-            top: 1.25rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            line-height: 1;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-            z-index: 1;
-        }
-
-        .gallery-modal-close:hover { opacity: 1; }
-
-        .gallery-modal-prev,
         .gallery-modal-next {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
+          right: 0.5rem;
         }
-
-        .gallery-modal-prev { left: 1.25rem; }
-        .gallery-modal-next { right: 1.25rem; }
-
-        .gallery-modal-prev:hover,
-        .gallery-modal-next:hover { background: rgba(255, 255, 255, 0.18); }
-
-        .gallery-modal-prev:active,
-        .gallery-modal-next:active {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-50%) scale(0.88);
-            transition: background 0.05s, transform 0.05s;
-        }
-
-        @media (max-width: 480px) {
-            .gallery-modal-prev { left: 0.5rem; }
-            .gallery-modal-next { right: 0.5rem; }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="nav-container">
-            <!-- <div class="nav-logo">
+      <div class="nav-container">
+        <!-- <div class="nav-logo">
                 Sam <span>&</span> Frida
             </div> -->
-            <ul class="nav-links">
-                <li><a href="#home"     data-i18n="nav.home">Home</a></li>
-                <li><a href="#location" data-i18n="nav.location">Location</a></li>
-                <li><a href="#travel"   data-i18n="nav.travel">Travel</a></li>
-                <li><a href="#gallery"  data-i18n="nav.gallery">Gallery</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-            </ul>
-            <div class="lang-toggle" id="langToggle" onclick="setLang(currentLang === 'en' ? 'es' : 'en')" role="switch" aria-checked="true" aria-label="Language toggle">
-                <span class="lang-label lang-en">EN</span>
-                <div class="lang-track">
-                    <div class="lang-thumb"></div>
-                </div>
-                <span class="lang-label lang-es">ES</span>
-            </div>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <ul class="nav-links">
+          <li><a href="#home" data-i18n="nav.home">Home</a></li>
+          <li><a href="#location" data-i18n="nav.location">Location</a></li>
+          <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+          <li><a href="#travel" data-i18n="nav.travel">Travel</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
+        </ul>
+        <div
+          class="lang-toggle"
+          id="langToggle"
+          onclick="setLang(currentLang === 'en' ? 'es' : 'en')"
+          role="switch"
+          aria-checked="true"
+          aria-label="Language toggle"
+        >
+          <span class="lang-label lang-en">EN</span>
+          <div class="lang-track">
+            <div class="lang-thumb"></div>
+          </div>
+          <span class="lang-label lang-es">ES</span>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#home"     onclick="closeMenu()" data-i18n="nav.home">Home</a>
-            <a href="#location" onclick="closeMenu()" data-i18n="nav.location">Location</a>
-            <a href="#travel"   onclick="closeMenu()" data-i18n="nav.travel">Travel</a>
-            <a href="#gallery"  onclick="closeMenu()" data-i18n="nav.gallery">Gallery</a>
-            <a href="#rsvp"     onclick="closeMenu()">RSVP</a>
-        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="closeMenu()" data-i18n="nav.home">Home</a>
+        <a href="#location" onclick="closeMenu()" data-i18n="nav.location"
+          >Location</a
+        >
+        <a href="#gallery" onclick="closeMenu()" data-i18n="nav.gallery"
+          >Gallery</a
+        >
+        <a href="#travel" onclick="closeMenu()" data-i18n="nav.travel"
+          >Travel</a
+        >
+        <a href="#rsvp" onclick="closeMenu()">RSVP</a>
+      </div>
     </nav>
 
     <!-- ── Home ── -->
     <section id="home">
-        <div class="hero-content">
-            <h1 class="hero-names">
-                <span class="hero-name">sam</span>
-                <span class="hero-and">and</span>
-                <span class="hero-name">frida</span>
-            </h1>
-            <div class="hero-wedding-date" data-i18n="hero.date">October 2, 2027</div>
-            <div class="hero-countdown" id="heroCountdown"></div>
+      <div class="hero-content">
+        <h1 class="hero-names">
+          <span class="hero-name">sam</span>
+          <span class="hero-and">and</span>
+          <span class="hero-name">frida</span>
+        </h1>
+        <div class="hero-wedding-date" data-i18n="hero.date">
+          October 2, 2027
         </div>
-        <a class="hero-scroll" data-i18n="hero.scroll" href="#location">Scroll</a>
+        <div class="hero-countdown" id="heroCountdown"></div>
+      </div>
+      <a class="hero-scroll" data-i18n="hero.scroll" href="#location">Scroll</a>
     </section>
 
     <!-- ── Location ── -->
     <section id="location">
-        <div class="section-inner">
-            <!-- <p class="section-label" data-i18n="location.label">Where we'll celebrate</p> -->
-            <h2 class="section-title" data-i18n="location.title">The Details</h2>
-            <div class="location-grid">
-                <div class="villa-img-wrap">
-                    <img class="villa-sketch"
-                         src="assets/drawing-villa.webp"
-                         alt="Villa del Paraiso">
-                </div>
-                <div class="location-details">
-                    <div class="detail-item">
-                        <span class="detail-label" data-i18n="location.venueLabel">Venue</span>
-                        <span class="detail-value">Villa del Paraiso</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label" data-i18n="location.addressLabel">Address</span>
-                        <span class="detail-value">
-                            Carretera Tijuana-Ensenada<br>
-                            Rosarito Km 51.3 Primo Tapia, 22714<br>
-                            Playas de Rosarito, B.C., Mexico
-                        </span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label" data-i18n="location.dateLabel">Date</span>
-                        <span class="detail-value" data-i18n="location.dateValue">Saturday, October 2, 2027</span>
-                    </div>
-                    <a class="map-link"
-                       href="https://maps.google.com/?q=Carretera+Tijuana-Ensenada+Km+51.3+Primo+Tapia+Rosarito"
-                       target="_blank"
-                       rel="noopener"
-                       data-i18n="location.mapLink">
-                        View on Google Maps →
-                    </a>
-                </div>
+      <div class="section-inner">
+        <!-- <p class="section-label" data-i18n="location.label">Where we'll celebrate</p> -->
+        <h2 class="section-title" data-i18n="location.title">The Details</h2>
+        <div class="location-grid">
+          <div class="villa-img-wrap">
+            <img
+              class="villa-sketch"
+              src="assets/drawing-villa.webp"
+              alt="Villa del Paraiso"
+            />
+          </div>
+          <div class="location-details">
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="location.venueLabel"
+                >Venue</span
+              >
+              <span class="detail-value">Villa del Paraiso</span>
             </div>
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="location.addressLabel"
+                >Address</span
+              >
+              <span class="detail-value">
+                Carretera Tijuana-Ensenada<br />
+                Rosarito Km 51.3 Primo Tapia, 22714<br />
+                Playas de Rosarito, B.C., Mexico
+              </span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="location.dateLabel"
+                >Date</span
+              >
+              <span class="detail-value" data-i18n="location.dateValue"
+                >Saturday, October 2, 2027</span
+              >
+            </div>
+            <a
+              class="map-link"
+              href="https://maps.google.com/?q=Carretera+Tijuana-Ensenada+Km+51.3+Primo+Tapia+Rosarito"
+              target="_blank"
+              rel="noopener"
+              data-i18n="location.mapLink"
+            >
+              View on Google Maps →
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ── Gallery ── -->
     <section id="gallery">
-        <div style="text-align: center; padding: 2.5rem 2rem 0;">
-            <h2 class="section-title">A bit of us</h2>
-            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #5a5a3a;">Here's some of our favorite memories of us</p>
-        </div>
-        <div class="gallery-wall">
-            <div class="polaroid-wall">
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/April2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">April 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/April2023-1.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">April 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/June2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">June 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/LA2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Los Angeles, 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Sept2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">September 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/10pmSonic2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">10pm Sonic, 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Dec2023.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">December 2023</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Sams28thBirthday.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Sam's 28th Birthday</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Yosemite2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Yosemite, 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/OurFirstMoose2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Our First Moose, 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/March2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">March 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img">
-                        <video autoplay muted loop playsinline>
-                            <source src="gallery/videos/Europe2024.MOV">
-                        </video>
-                    </div>
-                    <div class="polaroid-caption">Europe, 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Sept2024.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">September 2024</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/BigSurOct2024-2.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Big Sur, Oct 2024</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-3">
-                    <div class="polaroid-img">
-                        <img src="gallery/stop-motion/October2024/greendresskiss1.jpeg" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/October2024/greendresskiss2.jpeg" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/October2024/greendresskiss3.jpeg" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">October 2024</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-2">
-                    <div class="polaroid-img">
-                        <img src="gallery/stop-motion/Nov2024/1.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/Nov2024/2.JPG" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">November 2024</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-2">
-                    <div class="polaroid-img">
-                        <img src="gallery/negative10DegInIdaho.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/negative10DegInIdaho2.JPG" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">-10° in Idaho</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-2">
-                    <div class="polaroid-img">
-                        <img src="gallery/stop-motion/germany2025/Germany2025.jpeg" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/germany2025/Germany2025-2.JPG" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">Germany, 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Sweden2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Sweden, 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/CostaRica2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Costa Rica, 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/CostaRica2025.2.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Costa Rica, 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/May2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">May 2025</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-3">
-                    <div class="polaroid-img">
-                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-1.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-2.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-3.jpeg" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">Glacier, June 2025</div>
-                </div>
-                <div class="polaroid polaroid--animated polaroid--animated-3">
-                    <div class="polaroid-img">
-                        <img src="gallery/stop-motion/June2025-2/1.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/June2025-2/2.JPG" alt="Sam &amp; Frida">
-                        <img src="gallery/stop-motion/June2025-2/3.JPG" alt="Sam &amp; Frida">
-                    </div>
-                    <div class="polaroid-caption">June 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Sept2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">September 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img">
-                        <video autoplay muted loop playsinline>
-                            <source src="gallery/videos/sept302025.MOV">
-                        </video>
-                    </div>
-                    <div class="polaroid-caption">September 30, 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Oct2025.JPG" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">October 2025</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img"><img src="gallery/Fridas28th-Feb2026.jpeg" alt="Sam &amp; Frida" loading="lazy"></div>
-                    <div class="polaroid-caption">Frida's 28th, Feb 2026</div>
-                </div>
+      <div style="text-align: center; padding: 2.5rem 2rem 0">
+        <h2 class="section-title" data-i18n="gallery.title">A bit of us</h2>
+        <p
+          style="
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #5a5a3a;
+          "
+          data-i18n="gallery.subtitle"
+        >
+          Here's some of our favorite memories of us
+        </p>
+      </div>
+      <div class="gallery-wall">
+        <div class="polaroid-wall">
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/April2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
             </div>
+            <div class="polaroid-caption">April 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/April2023-1.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">April 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/June2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">June 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/LA2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Los Angeles, 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Sept2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">September 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/10pmSonic2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">10pm Sonic, 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Dec2023.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">December 2023</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Sams28thBirthday.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Sam's 28th Birthday</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Yosemite2024.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Yosemite, 2024</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/OurFirstMoose2024.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Our First Moose, 2024</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/March2024.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">March 2024</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <video autoplay muted loop playsinline>
+                <source src="gallery/videos/Europe2024.MOV" />
+              </video>
+            </div>
+            <div class="polaroid-caption">Europe, 2024</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Sept2024.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">September 2024</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/BigSurOct2024-2.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Big Sur, Oct 2024</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-3">
+            <div class="polaroid-img">
+              <img
+                src="gallery/stop-motion/October2024/greendresskiss1.jpeg"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/October2024/greendresskiss2.jpeg"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/October2024/greendresskiss3.jpeg"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">October 2024</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-2">
+            <div class="polaroid-img">
+              <img
+                src="gallery/stop-motion/Nov2024/1.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/Nov2024/2.JPG"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">November 2024</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-2">
+            <div class="polaroid-img">
+              <img
+                src="gallery/negative10DegInIdaho.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/negative10DegInIdaho2.JPG"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">-10° in Idaho</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-2">
+            <div class="polaroid-img">
+              <img
+                src="gallery/stop-motion/germany2025/Germany2025.jpeg"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/germany2025/Germany2025-2.JPG"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">Germany, 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Sweden2025.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Sweden, 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/CostaRica2025.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Costa Rica, 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/CostaRica2025.2.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Costa Rica, 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/May2025.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">May 2025</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-3">
+            <div class="polaroid-img">
+              <img
+                src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-1.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-2.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/June2025/GlacierNatParkBikeRide2025-3.jpeg"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">Glacier, June 2025</div>
+          </div>
+          <div class="polaroid polaroid--animated polaroid--animated-3">
+            <div class="polaroid-img">
+              <img
+                src="gallery/stop-motion/June2025-2/1.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/June2025-2/2.JPG"
+                alt="Sam &amp; Frida"
+              />
+              <img
+                src="gallery/stop-motion/June2025-2/3.JPG"
+                alt="Sam &amp; Frida"
+              />
+            </div>
+            <div class="polaroid-caption">June 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Sept2025.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">September 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <video autoplay muted loop playsinline>
+                <source src="gallery/videos/sept302025.MOV" />
+              </video>
+            </div>
+            <div class="polaroid-caption">September 30, 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Oct2025.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">October 2025</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Fridas28th-Feb2026.jpeg"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">Frida's 28th, Feb 2026</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ── Travel ── -->
     <section id="travel">
-        <div class="section-inner">
-            <p class="section-label" data-i18n="travel.label">Coming soon</p>
-            <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
-            <p class="travel-text" data-i18n="travel.intro">We'll have lots more details soon, but for now, here are the basics:</p>
-            <ul>
-                <li data-i18n="travel.point1">The venue is in Baja California, within driving distance from San Diego.</li>
-                <li data-i18n="travel.point2">Housing and transportation recommendations will be provided.</li>
-                <li data-i18n="travel.point3">Global Entry/Sentri is highly recommended (details to follow).</li>
-            </ul>
-            <!-- <div class="travel-cards">
+      <div class="section-inner">
+        <p class="section-label" data-i18n="travel.label">Coming soon</p>
+        <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
+        <p class="travel-text" data-i18n="travel.intro">
+          We'll have lots more details soon, but for now, here are the basics:
+        </p>
+        <ul>
+          <li data-i18n="travel.point1">
+            The venue is in Baja California, within driving distance from San
+            Diego.
+          </li>
+          <li data-i18n="travel.point2">
+            Housing and transportation recommendations will be provided.
+          </li>
+          <li data-i18n="travel.point3">
+            Global Entry/Sentri is highly recommended (details to follow).
+          </li>
+        </ul>
+        <!-- <div class="travel-cards">
                 <div class="travel-card">
                     <h3 data-i18n="travel.toll.title">Toll Roads</h3>
                     <p data-i18n="travel.toll.body">Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.</p>
@@ -1039,367 +1301,494 @@
                     <p data-i18n="travel.drive.body">The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.</p>
                 </div>
             </div> -->
-        </div>
+      </div>
     </section>
 
     <!-- ── RSVP ── -->
     <section id="rsvp">
-        <div class="rsvp-inner">
-            <p class="section-label" data-i18n="rsvp.label">Coming Soon</p>
-            <h2 class="section-title">RSVP</h2>
-            <p class="rsvp-text" data-i18n="rsvp.text">
-                We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!
-            </p>
-            <!-- <a href="#" class="rsvp-btn" data-i18n="rsvp.btn">RSVP Here</a> -->
-            <!-- <p class="rsvp-note" data-i18n="rsvp.note">Link coming soon</p> -->
-        </div>
+      <div class="rsvp-inner">
+        <p class="section-label" data-i18n="rsvp.label">Coming Soon</p>
+        <h2 class="section-title">RSVP</h2>
+        <p class="rsvp-text" data-i18n="rsvp.text">
+          We'd love to celebrate this day with you. We'll have RSVP's open
+          following a formal invite, so come back soon!
+        </p>
+        <!-- <a href="#" class="rsvp-btn" data-i18n="rsvp.btn">RSVP Here</a> -->
+        <!-- <p class="rsvp-note" data-i18n="rsvp.note">Link coming soon</p> -->
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p class="footer-names">Sam &amp; Frida</p>
-        <p data-i18n="footer.details">October 2, 2027 &nbsp;·&nbsp; Villa del Paraiso &nbsp;·&nbsp; Rosarito, Mexico</p>
+      <p class="footer-names">Sam &amp; Frida</p>
+      <p data-i18n="footer.details">
+        October 2, 2027 &nbsp;·&nbsp; Villa del Paraiso &nbsp;·&nbsp; Rosarito,
+        Mexico
+      </p>
     </footer>
 
     <!-- ── Gallery Modal ── -->
-    <div id="galleryModal" class="gallery-modal" role="dialog" aria-modal="true">
-        <button class="gallery-modal-close" id="galleryModalClose" aria-label="Close">&times;</button>
-        <button class="gallery-modal-prev" id="galleryModalPrev" aria-label="Previous">&#8592;</button>
-        <div class="gallery-modal-media" id="galleryModalMedia"></div>
-        <div class="gallery-modal-caption" id="galleryModalCaption"></div>
-        <button class="gallery-modal-next" id="galleryModalNext" aria-label="Next">&#8594;</button>
+    <div
+      id="galleryModal"
+      class="gallery-modal"
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        class="gallery-modal-close"
+        id="galleryModalClose"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <button
+        class="gallery-modal-prev"
+        id="galleryModalPrev"
+        aria-label="Previous"
+      >
+        &#8592;
+      </button>
+      <div class="gallery-modal-media" id="galleryModalMedia"></div>
+      <div class="gallery-modal-caption" id="galleryModalCaption"></div>
+      <button
+        class="gallery-modal-next"
+        id="galleryModalNext"
+        aria-label="Next"
+      >
+        &#8594;
+      </button>
     </div>
 
     <script>
-        // ── i18n ────────────────────────────────────────────────────────
-        const translations = {
-            en: {
-                'hero.title':              "We're getting married!",
-                'countdown.year':         'year',    'countdown.years':   'years',
-                'countdown.month':        'month',   'countdown.months':  'months',
-                'countdown.day':          'day',     'countdown.days':    'days',
-                'nav.home':               'Home',
-                'nav.location':           'Location',
-                'nav.travel':             'Travel',
-                'nav.gallery':            'Gallery',
-                'hero.scroll':            'Scroll',
-                'location.label':         "Where we'll celebrate",
-                'location.title':         'The Details',
-                'location.venueLabel':    "Where we'll celebrate",
-                'location.addressLabel':  'Address',
-                'location.dateLabel':     'Date',
-                'location.dateValue':     'Saturday, October 2, 2027',
-                'location.mapLink':       'View on Google Maps →',
-                'travel.label':           'Coming soon',
-                'travel.title':           'Travel Details',
-                'travel.intro':           "We'll have lots more details soon, but for now, here are the basics:",
-                'travel.point1':          'The venue is in Baja California, within driving distance from San Diego.',
-                'travel.point2':          'Housing and transportation recommendations will be provided.',
-                'travel.point3':          'Global Entry/Sentri is highly recommended (details to follow).',
-                'travel.toll.title':      'Toll Roads',
-                'travel.toll.body':       "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
-                'travel.insurance.title': 'Mexican Auto Insurance',
-                'travel.insurance.body':  "Please purchase Mexican auto insurance if you drive your vehicle across the border — U.S. insurance typically does not provide coverage in Mexico.",
-                'travel.drive.title':     'The Scenic Drive',
-                'travel.drive.body':      'The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.',
-                'gallery.cap1':           'How it started',
-                'gallery.cap2':           'First adventure',
-                'gallery.cap3':           'The proposal',
-                'gallery.cap4':           'Us',
-                'gallery.cap5':           'Our happy place',
-                'gallery.cap6':           'Better together',
-                'gallery.cap7':           'Adventures ahead',
-                'gallery.cap8':           'Forever',
-                'rsvp.label':             'Coming Soon',
-                'rsvp.text':              "We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!",
-                'rsvp.btn':               'RSVP Here',
-                'rsvp.note':              'Link coming soon',
-                'footer.details':         'October 2, 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, Mexico',
-            },
-            es: {
-                'hero.title':              "Nos casamos!",
-                'countdown.year':         'año',     'countdown.years':   'años',
-                'countdown.month':        'mes',     'countdown.months':  'meses',
-                'countdown.day':          'día',     'countdown.days':    'días',
-                'nav.home':               'Inicio',
-                'nav.location':           'Lugar',
-                'nav.travel':             'Viaje',
-                'nav.gallery':            'Galería',
-                'hero.scroll':            'Desplazar',
-                'location.label':         'Dónde celebraremos',
-                'location.title':         'Los Detalles',
-                'location.venueLabel':    "Donde celebraremos",
-                'location.addressLabel':  'Dirección',
-                'location.dateLabel':     'Fecha',
-                'location.dateValue':     'Sábado, 2 de octubre de 2027',
-                'location.mapLink':       'Ver en Google Maps →',
-                'travel.label':           'Próximamente',
-                'travel.title':           'Detalles de Viaje',
-                'travel.intro':           'Pronto tendremos más detalles, pero por ahora, aquí están los aspectos básicos:',
-                'travel.point1':          'El venue está en Baja California, a poca distancia en auto desde San Diego.',
-                'travel.point2':          'Próximamente se darán recomendaciones de alojamiento y transporte.',
-                'travel.point3':          'Se recomienda ampliamente tener Global Entry/Sentri (más detalles próximamente).',
-                'travel.toll.title':      'Carreteras de Cuota',
-                'travel.toll.body':       'Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.',
-                'travel.insurance.title': 'Seguro de Auto Mexicano',
-                'travel.insurance.body':  'Se recomienda adquirir un seguro de auto mexicano si manejas tu vehículo cruzando la frontera — el seguro estadounidense generalmente no tiene cobertura en México.',
-                'travel.drive.title':     'El Camino Escénico',
-                'travel.drive.body':      'La carretera costera de Tijuana a Rosarito es un hermoso tramo de la costa del Pacífico. Disfruta las vistas — el camino es parte de la experiencia.',
-                'gallery.cap1':           'Cómo empezó',
-                'gallery.cap2':           'Primera aventura',
-                'gallery.cap3':           'La propuesta',
-                'gallery.cap4':           'Nosotros',
-                'gallery.cap5':           'Nuestro lugar feliz',
-                'gallery.cap6':           'Mejor juntos',
-                'gallery.cap7':           'Aventuras por venir',
-                'gallery.cap8':           'Para siempre',
-                'rsvp.label':             'Próximamente',
-                'rsvp.text':              'Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.',
-                'rsvp.btn':               'Confirmar aquí',
-                'rsvp.note':              'Enlace próximamente',
-                'footer.details':         '2 de octubre de 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, México',
-            }
+      // ── i18n ────────────────────────────────────────────────────────
+      const translations = {
+        en: {
+          "hero.title": "We're getting married!",
+          "countdown.year": "year",
+          "countdown.years": "years",
+          "countdown.month": "month",
+          "countdown.months": "months",
+          "countdown.day": "day",
+          "countdown.days": "days",
+          "nav.home": "Home",
+          "nav.location": "Location",
+          "nav.travel": "Travel",
+          "nav.gallery": "Gallery",
+          "hero.scroll": "Scroll",
+          "location.label": "Where we'll celebrate",
+          "location.title": "The Details",
+          "location.venueLabel": "Where we'll celebrate",
+          "location.addressLabel": "Address",
+          "location.dateLabel": "Date",
+          "location.dateValue": "Saturday, October 2, 2027",
+          "location.mapLink": "View on Google Maps →",
+          "travel.label": "Coming soon",
+          "travel.title": "Travel Details",
+          "travel.intro":
+            "We'll have lots more details soon, but for now, here are the basics:",
+          "travel.point1":
+            "The venue is in Baja California, within driving distance from San Diego.",
+          "travel.point2":
+            "Housing and transportation recommendations will be provided.",
+          "travel.point3":
+            "Global Entry/Sentri is highly recommended (details to follow).",
+          "travel.toll.title": "Toll Roads",
+          "travel.toll.body":
+            "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
+          "travel.insurance.title": "Mexican Auto Insurance",
+          "travel.insurance.body":
+            "Please purchase Mexican auto insurance if you drive your vehicle across the border — U.S. insurance typically does not provide coverage in Mexico.",
+          "travel.drive.title": "The Scenic Drive",
+          "travel.drive.body":
+            "The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.",
+          "gallery.title": "A bit of us",
+          "gallery.subtitle": "Here's some of our favorite memories of us",
+          "gallery.cap1": "How it started",
+          "gallery.cap2": "First adventure",
+          "gallery.cap3": "The proposal",
+          "gallery.cap4": "Us",
+          "gallery.cap5": "Our happy place",
+          "gallery.cap6": "Better together",
+          "gallery.cap7": "Adventures ahead",
+          "gallery.cap8": "Forever",
+          "rsvp.label": "Coming Soon",
+          "rsvp.text":
+            "We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!",
+          "rsvp.btn": "RSVP Here",
+          "rsvp.note": "Link coming soon",
+          "footer.details":
+            "October 2, 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, Mexico",
+        },
+        es: {
+          "hero.title": "Nos casamos!",
+          "countdown.year": "año",
+          "countdown.years": "años",
+          "countdown.month": "mes",
+          "countdown.months": "meses",
+          "countdown.day": "día",
+          "countdown.days": "días",
+          "nav.home": "Inicio",
+          "nav.location": "Lugar",
+          "nav.travel": "Viaje",
+          "nav.gallery": "Galería",
+          "hero.scroll": "Desplazar",
+          "location.label": "Dónde celebraremos",
+          "location.title": "Los Detalles",
+          "location.venueLabel": "Donde celebraremos",
+          "location.addressLabel": "Dirección",
+          "location.dateLabel": "Fecha",
+          "location.dateValue": "Sábado, 2 de octubre de 2027",
+          "location.mapLink": "Ver en Google Maps →",
+          "travel.label": "Próximamente",
+          "travel.title": "Detalles de Viaje",
+          "travel.intro":
+            "Pronto tendremos más detalles, pero por ahora, aquí están los aspectos básicos:",
+          "travel.point1":
+            "El venue está en Baja California, a poca distancia en auto desde San Diego.",
+          "travel.point2":
+            "Próximamente se darán recomendaciones de alojamiento y transporte.",
+          "travel.point3":
+            "Se recomienda ampliamente tener Global Entry/Sentri (más detalles próximamente).",
+          "travel.toll.title": "Carreteras de Cuota",
+          "travel.toll.body":
+            "Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.",
+          "travel.insurance.title": "Seguro de Auto Mexicano",
+          "travel.insurance.body":
+            "Se recomienda adquirir un seguro de auto mexicano si manejas tu vehículo cruzando la frontera — el seguro estadounidense generalmente no tiene cobertura en México.",
+          "travel.drive.title": "El Camino Escénico",
+          "travel.drive.body":
+            "La carretera costera de Tijuana a Rosarito es un hermoso tramo de la costa del Pacífico. Disfruta las vistas — el camino es parte de la experiencia.",
+          "gallery.title": "Un poco de nosotros",
+          "gallery.subtitle": "Aquí están algunos de nuestros recuerdos favoritos",
+          "gallery.cap1": "Cómo empezó",
+          "gallery.cap2": "Primera aventura",
+          "gallery.cap3": "La propuesta",
+          "gallery.cap4": "Nosotros",
+          "gallery.cap5": "Nuestro lugar feliz",
+          "gallery.cap6": "Mejor juntos",
+          "gallery.cap7": "Aventuras por venir",
+          "gallery.cap8": "Para siempre",
+          "rsvp.label": "Próximamente",
+          "rsvp.text":
+            "Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.",
+          "rsvp.btn": "Confirmar aquí",
+          "rsvp.note": "Enlace próximamente",
+          "footer.details":
+            "2 de octubre de 2027 \u00a0·\u00a0 Villa del Paraiso \u00a0·\u00a0 Rosarito, México",
+        },
+      };
+
+      const weddingDate = new Date(2027, 9, 2); // October 2, 2027
+
+      let currentLang = localStorage.getItem("lang") || "en";
+
+      function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem("lang", lang);
+        const t = translations[lang];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (key === "hero.date") {
+            el.textContent = new Intl.DateTimeFormat(lang, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }).format(weddingDate);
+          } else if (t[key] !== undefined) {
+            el.textContent = t[key];
+          }
+        });
+        const track = document.querySelector(".lang-track");
+        const labelEn = document.querySelector(".lang-en");
+        const labelEs = document.querySelector(".lang-es");
+        track.classList.toggle("es", lang === "es");
+        labelEn.classList.toggle("active", lang === "en");
+        labelEs.classList.toggle("active", lang === "es");
+        document
+          .getElementById("langToggle")
+          .setAttribute("aria-checked", lang === "es");
+        document.documentElement.lang = lang;
+        if (typeof formatCountdown === "function") formatCountdown();
+      }
+
+      // Apply saved language on load
+      setLang(currentLang);
+
+      // ── Nav / hamburger ─────────────────────────────────────────────
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = hamburger.classList.toggle("open");
+        mobileMenu.classList.toggle("open", isOpen);
+      });
+
+      function closeMenu() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      }
+
+      document.addEventListener("click", (e) => {
+        const langToggle = document.getElementById("langToggle");
+        if (
+          !hamburger.contains(e.target) &&
+          !mobileMenu.contains(e.target) &&
+          !langToggle.contains(e.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      // Duplicate polaroids for seamless marquee loop
+      // ── Countdown ────────────────────────────────────────────────────
+      (function () {
+        const target = new Date("2027-10-02T00:00:00");
+        const el = document.getElementById("heroCountdown");
+
+        formatCountdown = function formatCountdown() {
+          const now = new Date();
+          let years = target.getFullYear() - now.getFullYear();
+          let months = target.getMonth() - now.getMonth();
+          let days = target.getDate() - now.getDate();
+
+          if (days < 0) {
+            months--;
+            const prevMonth = new Date(
+              target.getFullYear(),
+              target.getMonth(),
+              0
+            );
+            days += prevMonth.getDate();
+          }
+          if (months < 0) {
+            months += 12;
+            years--;
+          }
+
+          const t = translations[currentLang];
+          const parts = [];
+          if (years > 0)
+            parts.push(
+              years +
+                " " +
+                t[years === 1 ? "countdown.year" : "countdown.years"]
+            );
+          if (months > 0)
+            parts.push(
+              months +
+                " " +
+                t[months === 1 ? "countdown.month" : "countdown.months"]
+            );
+          if (days > 0)
+            parts.push(
+              days + " " + t[days === 1 ? "countdown.day" : "countdown.days"]
+            );
+
+          el.textContent = parts.join(" | ");
         };
 
-        const weddingDate = new Date(2027, 9, 2); // October 2, 2027
+        formatCountdown();
+        setInterval(formatCountdown, 60000);
+      })();
 
-        let currentLang = localStorage.getItem('lang') || 'en';
+      // Gallery: seamless auto-scroll with hover pause and touch/wheel control
+      (function () {
+        const galleryWall = document.querySelector(".gallery-wall");
+        const polaroidTrack = document.querySelector(".polaroid-wall");
+        if (!galleryWall || !polaroidTrack) return;
 
-        function setLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            const t = translations[lang];
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (key === 'hero.date') {
-                    el.textContent = new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric' }).format(weddingDate);
-                } else if (t[key] !== undefined) {
-                    el.textContent = t[key];
-                }
-            });
-            const track = document.querySelector('.lang-track');
-            const labelEn = document.querySelector('.lang-en');
-            const labelEs = document.querySelector('.lang-es');
-            track.classList.toggle('es', lang === 'es');
-            labelEn.classList.toggle('active', lang === 'en');
-            labelEs.classList.toggle('active', lang === 'es');
-            document.getElementById('langToggle').setAttribute('aria-checked', lang === 'es');
-            document.documentElement.lang = lang;
-            if (typeof formatCountdown === 'function') formatCountdown();
+        // Stamp slide index on originals before cloning
+        const originals = Array.from(polaroidTrack.children);
+        originals.forEach((el, i) => (el.dataset.slideIndex = i));
+
+        // Duplicate items for seamless loop (clones inherit data-slide-index)
+        originals.forEach((el) =>
+          polaroidTrack.appendChild(el.cloneNode(true))
+        );
+
+        // Stop-motion cycling: swap z-index so all frames are always rendered
+        const FRAME_MS = 900;
+        const LAST_MS = 2800; // last frame lingers longer (3+ frame sets only)
+        const STAGGER = 400; // ms offset between each animated polaroid
+        polaroidTrack
+          .querySelectorAll(".polaroid--animated")
+          .forEach((polaroid, i) => {
+            const imgs = Array.from(
+              polaroid.querySelectorAll(".polaroid-img img")
+            );
+            if (imgs.length < 2) return;
+            let current = 0;
+            imgs[0].style.zIndex = 1;
+            function nextFrame() {
+              imgs[current].style.zIndex = 0;
+              current = (current + 1) % imgs.length;
+              imgs[current].style.zIndex = 1;
+              const isLast = imgs.length > 2 && current === imgs.length - 1;
+              setTimeout(nextFrame, isLast ? LAST_MS : FRAME_MS);
+            }
+            setTimeout(nextFrame, FRAME_MS + i * STAGGER);
+          });
+
+        // ── Modal ────────────────────────────────────────────────────
+        const modal = document.getElementById("galleryModal");
+        const modalMedia = document.getElementById("galleryModalMedia");
+        const modalCaption = document.getElementById("galleryModalCaption");
+        let currentSlide = 0;
+
+        function getSlideMedia(index) {
+          const el = originals[index];
+          const caption =
+            el.querySelector(".polaroid-caption")?.textContent || "";
+          const videoSrc = el
+            .querySelector("video source")
+            ?.getAttribute("src");
+          if (videoSrc) return { type: "video", src: videoSrc, caption };
+          if (el.classList.contains("polaroid--animated")) {
+            const imgs = Array.from(el.querySelectorAll(".polaroid-img img"));
+            const active =
+              imgs.find((img) => img.style.zIndex === "1") || imgs[0];
+            return { type: "image", src: active.src, caption };
+          }
+          return {
+            type: "image",
+            src: el.querySelector(".polaroid-img img").src,
+            caption,
+          };
         }
 
-        // Apply saved language on load
-        setLang(currentLang);
-
-        // ── Nav / hamburger ─────────────────────────────────────────────
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        hamburger.addEventListener('click', () => {
-            const isOpen = hamburger.classList.toggle('open');
-            mobileMenu.classList.toggle('open', isOpen);
-        });
-
-        function closeMenu() {
-            hamburger.classList.remove('open');
-            mobileMenu.classList.remove('open');
+        function preloadAdjacent(index) {
+          [-1, 1].forEach((offset) => {
+            const adj = (index + offset + originals.length) % originals.length;
+            const { type, src } = getSlideMedia(adj);
+            if (type === "image") {
+              new Image().src = src;
+            }
+          });
         }
 
-        document.addEventListener('click', (e) => {
-            const langToggle = document.getElementById('langToggle');
-            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target) && !langToggle.contains(e.target)) {
-                closeMenu();
-            }
+        function showSlide(index) {
+          currentSlide = (index + originals.length) % originals.length;
+          const { type, src, caption } = getSlideMedia(currentSlide);
+          modalMedia.innerHTML = "";
+          if (type === "video") {
+            const v = document.createElement("video");
+            v.src = src;
+            v.autoplay = true;
+            v.muted = true;
+            v.loop = true;
+            v.playsInline = true;
+            v.controls = true;
+            modalMedia.appendChild(v);
+          } else {
+            const img = document.createElement("img");
+            img.src = src;
+            modalMedia.appendChild(img);
+          }
+          modalCaption.textContent = caption;
+          preloadAdjacent(currentSlide);
+        }
+
+        function openModal(index) {
+          showSlide(index);
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.classList.remove("open");
+          modalMedia.innerHTML = "";
+          document.body.style.overflow = "";
+        }
+
+        // Click on any polaroid (originals + clones)
+        polaroidTrack.addEventListener("click", (e) => {
+          const polaroid = e.target.closest(".polaroid[data-slide-index]");
+          if (!polaroid) return;
+          openModal(parseInt(polaroid.dataset.slideIndex));
         });
 
-        // Duplicate polaroids for seamless marquee loop
-        // ── Countdown ────────────────────────────────────────────────────
-        (function() {
-            const target = new Date('2027-10-02T00:00:00');
-            const el = document.getElementById('heroCountdown');
+        document
+          .getElementById("galleryModalClose")
+          .addEventListener("click", closeModal);
+        document
+          .getElementById("galleryModalPrev")
+          .addEventListener("click", () => showSlide(currentSlide - 1));
+        document
+          .getElementById("galleryModalNext")
+          .addEventListener("click", () => showSlide(currentSlide + 1));
 
-            formatCountdown = function formatCountdown() {
-                const now = new Date();
-                let years  = target.getFullYear() - now.getFullYear();
-                let months = target.getMonth()    - now.getMonth();
-                let days   = target.getDate()     - now.getDate();
+        // Close on backdrop click
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
 
-                if (days < 0) {
-                    months--;
-                    const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
-                    days += prevMonth.getDate();
-                }
-                if (months < 0) { months += 12; years--; }
+        // Keyboard nav
+        document.addEventListener("keydown", (e) => {
+          if (!modal.classList.contains("open")) return;
+          if (e.key === "Escape") closeModal();
+          if (e.key === "ArrowLeft") showSlide(currentSlide - 1);
+          if (e.key === "ArrowRight") showSlide(currentSlide + 1);
+        });
 
-                const t = translations[currentLang];
-                const parts = [];
-                if (years  > 0) parts.push(years  + ' ' + t[years  === 1 ? 'countdown.year'  : 'countdown.years']);
-                if (months > 0) parts.push(months + ' ' + t[months === 1 ? 'countdown.month' : 'countdown.months']);
-                if (days   > 0) parts.push(days   + ' ' + t[days   === 1 ? 'countdown.day'   : 'countdown.days']);
+        const SPEED = 0.6; // px per frame (~36px/s at 60fps)
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        let paused = isMobile;
+        let resumeTimer = null;
 
-                el.textContent = parts.join(' | ');
+        function halfWidth() {
+          return polaroidTrack.scrollWidth / 2;
+        }
+
+        function wrapScroll() {
+          const half = halfWidth();
+          if (galleryWall.scrollLeft >= half) galleryWall.scrollLeft -= half;
+          else if (galleryWall.scrollLeft < 0) galleryWall.scrollLeft += half;
+        }
+
+        function tick() {
+          wrapScroll(); // always wrap, even while user is scrolling
+          if (!paused) {
+            galleryWall.scrollLeft += SPEED;
+          }
+          requestAnimationFrame(tick);
+        }
+
+        function pauseFor(ms) {
+          paused = true;
+          clearTimeout(resumeTimer);
+          if (ms > 0)
+            resumeTimer = setTimeout(() => {
+              paused = false;
+            }, ms);
+        }
+
+        // Hover: pause while mouse is over gallery
+        galleryWall.addEventListener("mouseenter", () => pauseFor(0));
+        galleryWall.addEventListener("mouseleave", () => {
+          paused = false;
+        });
+
+        // Wheel: only handle horizontal swipes (deltaX) — let vertical scroll pass through
+        galleryWall.addEventListener(
+          "wheel",
+          (e) => {
+            if (Math.abs(e.deltaX) > 0) {
+              pauseFor(1500); // resume auto-scroll after 1.5s idle
             }
+          },
+          { passive: true }
+        );
 
-            formatCountdown();
-            setInterval(formatCountdown, 60000);
-        })();
+        // Touch: pause auto-scroll, let browser handle drag natively
+        galleryWall.addEventListener("touchstart", () => pauseFor(0), {
+          passive: true,
+        });
+        galleryWall.addEventListener("touchend", () => pauseFor(1000), {
+          passive: true,
+        });
 
-        // Gallery: seamless auto-scroll with hover pause and touch/wheel control
-        (function () {
-            const galleryWall  = document.querySelector('.gallery-wall');
-            const polaroidTrack = document.querySelector('.polaroid-wall');
-            if (!galleryWall || !polaroidTrack) return;
-
-            // Stamp slide index on originals before cloning
-            const originals = Array.from(polaroidTrack.children);
-            originals.forEach((el, i) => el.dataset.slideIndex = i);
-
-            // Duplicate items for seamless loop (clones inherit data-slide-index)
-            originals.forEach(el => polaroidTrack.appendChild(el.cloneNode(true)));
-
-            // Stop-motion cycling: swap z-index so all frames are always rendered
-            const FRAME_MS = 900;
-            const LAST_MS  = 2800; // last frame lingers longer (3+ frame sets only)
-            const STAGGER  = 400; // ms offset between each animated polaroid
-            polaroidTrack.querySelectorAll('.polaroid--animated').forEach((polaroid, i) => {
-                const imgs = Array.from(polaroid.querySelectorAll('.polaroid-img img'));
-                if (imgs.length < 2) return;
-                let current = 0;
-                imgs[0].style.zIndex = 1;
-                function nextFrame() {
-                    imgs[current].style.zIndex = 0;
-                    current = (current + 1) % imgs.length;
-                    imgs[current].style.zIndex = 1;
-                    const isLast = imgs.length > 2 && current === imgs.length - 1;
-                    setTimeout(nextFrame, isLast ? LAST_MS : FRAME_MS);
-                }
-                setTimeout(nextFrame, FRAME_MS + (i * STAGGER));
-            });
-
-            // ── Modal ────────────────────────────────────────────────────
-            const modal       = document.getElementById('galleryModal');
-            const modalMedia  = document.getElementById('galleryModalMedia');
-            const modalCaption = document.getElementById('galleryModalCaption');
-            let currentSlide  = 0;
-
-            function getSlideMedia(index) {
-                const el = originals[index];
-                const caption = el.querySelector('.polaroid-caption')?.textContent || '';
-                const videoSrc = el.querySelector('video source')?.getAttribute('src');
-                if (videoSrc) return { type: 'video', src: videoSrc, caption };
-                if (el.classList.contains('polaroid--animated')) {
-                    const imgs = Array.from(el.querySelectorAll('.polaroid-img img'));
-                    const active = imgs.find(img => img.style.zIndex === '1') || imgs[0];
-                    return { type: 'image', src: active.src, caption };
-                }
-                return { type: 'image', src: el.querySelector('.polaroid-img img').src, caption };
-            }
-
-            function preloadAdjacent(index) {
-                [-1, 1].forEach(offset => {
-                    const adj = (index + offset + originals.length) % originals.length;
-                    const { type, src } = getSlideMedia(adj);
-                    if (type === 'image') { new Image().src = src; }
-                });
-            }
-
-            function showSlide(index) {
-                currentSlide = (index + originals.length) % originals.length;
-                const { type, src, caption } = getSlideMedia(currentSlide);
-                modalMedia.innerHTML = '';
-                if (type === 'video') {
-                    const v = document.createElement('video');
-                    v.src = src;
-                    v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true; v.controls = true;
-                    modalMedia.appendChild(v);
-                } else {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    modalMedia.appendChild(img);
-                }
-                modalCaption.textContent = caption;
-                preloadAdjacent(currentSlide);
-            }
-
-            function openModal(index) {
-                showSlide(index);
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeModal() {
-                modal.classList.remove('open');
-                modalMedia.innerHTML = '';
-                document.body.style.overflow = '';
-            }
-
-            // Click on any polaroid (originals + clones)
-            polaroidTrack.addEventListener('click', e => {
-                const polaroid = e.target.closest('.polaroid[data-slide-index]');
-                if (!polaroid) return;
-                openModal(parseInt(polaroid.dataset.slideIndex));
-            });
-
-            document.getElementById('galleryModalClose').addEventListener('click', closeModal);
-            document.getElementById('galleryModalPrev').addEventListener('click', () => showSlide(currentSlide - 1));
-            document.getElementById('galleryModalNext').addEventListener('click', () => showSlide(currentSlide + 1));
-
-            // Close on backdrop click
-            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-            // Keyboard nav
-            document.addEventListener('keydown', e => {
-                if (!modal.classList.contains('open')) return;
-                if (e.key === 'Escape')      closeModal();
-                if (e.key === 'ArrowLeft')   showSlide(currentSlide - 1);
-                if (e.key === 'ArrowRight')  showSlide(currentSlide + 1);
-            });
-
-            const SPEED = 0.6; // px per frame (~36px/s at 60fps)
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            let paused = isMobile;
-            let resumeTimer = null;
-
-            function halfWidth() { return polaroidTrack.scrollWidth / 2; }
-
-            function wrapScroll() {
-                const half = halfWidth();
-                if (galleryWall.scrollLeft >= half) galleryWall.scrollLeft -= half;
-                else if (galleryWall.scrollLeft < 0)  galleryWall.scrollLeft += half;
-            }
-
-            function tick() {
-                wrapScroll(); // always wrap, even while user is scrolling
-                if (!paused) {
-                    galleryWall.scrollLeft += SPEED;
-                }
-                requestAnimationFrame(tick);
-            }
-
-            function pauseFor(ms) {
-                paused = true;
-                clearTimeout(resumeTimer);
-                if (ms > 0) resumeTimer = setTimeout(() => { paused = false; }, ms);
-            }
-
-            // Hover: pause while mouse is over gallery
-            galleryWall.addEventListener('mouseenter', () => pauseFor(0));
-            galleryWall.addEventListener('mouseleave', () => { paused = false; });
-
-            // Wheel: only handle horizontal swipes (deltaX) — let vertical scroll pass through
-            galleryWall.addEventListener('wheel', (e) => {
-                if (Math.abs(e.deltaX) > 0) {
-                    pauseFor(1500); // resume auto-scroll after 1.5s idle
-                }
-            }, { passive: true });
-
-            // Touch: pause auto-scroll, let browser handle drag natively
-            galleryWall.addEventListener('touchstart', () => pauseFor(0), { passive: true });
-            galleryWall.addEventListener('touchend',   () => pauseFor(1000), { passive: true });
-
-            requestAnimationFrame(tick);
-        })();
+        requestAnimationFrame(tick);
+      })();
     </script>
-
-</body>
+  </body>
 </html>
