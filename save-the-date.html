@@ -60,12 +60,68 @@
             background-repeat: no-repeat;
             padding: 0.7rem 2.4rem;
         }
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        .lang-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #3a3a3a99;
+            transition: color 0.25s;
+        }
+        .lang-label.active {
+            color: #3a3a3a;
+        }
+        .lang-track {
+            width: 44px;
+            height: 24px;
+            background: #ce779073;
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.25s;
+            flex-shrink: 0;
+        }
+        .lang-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.25s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .lang-track.es .lang-thumb {
+            transform: translateX(20px);
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-10 md:p-12 lg:p-20 bg-white">
-    <div class="bg-primary w-full flex flex-col items-center text-center px-14 pt-16 pb-14">
+    <div class="bg-primary w-full flex flex-col items-center text-center px-14 pt-10 pb-14">
 
-        <p class="font-raleway font-medium tracking-widest-2 uppercase text-dark leading-[1.6rem] mb-16">
+        <div
+            class="lang-toggle self-end mb-6"
+            id="langToggle"
+            onclick="setLang(currentLang === 'en' ? 'es' : 'en')"
+            role="switch"
+            aria-checked="false"
+            aria-label="Language toggle"
+        >
+            <span class="lang-label lang-en active">EN</span>
+            <div class="lang-track">
+                <div class="lang-thumb"></div>
+            </div>
+            <span class="lang-label lang-es">ES</span>
+        </div>
+
+        <p class="font-raleway font-medium tracking-widest-2 uppercase text-dark leading-[1.6rem] mb-16" data-i18n="heading">
             Save the Date for<br>
             the Wedding of
         </p>
@@ -73,26 +129,67 @@
         <h1 class="names font-samandfridafont font-normal text-dark tracking-wide">
             Frida
         </h1>
-            <span class="and block names font-samandfridafont font-normal text-dark tracking-wide">and</span>
+            <span class="and block names font-samandfridafont font-normal text-dark tracking-wide" data-i18n="and">and</span>
             <h1 class="names font-samandfridafont font-normal text-dark tracking-wide mb-9">
-
                 Samuel
             </h1>
 
-        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-3 uppercase text-dark mb-8">
+        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-3 uppercase text-dark mb-8" data-i18n="date">
             Oct 2nd, 2027
         </p>
 
-        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-2 uppercase text-dark leading-loose mb-7">
+        <p class="font-raleway text-[0.95rem] font-medium tracking-widest-2 uppercase text-dark leading-loose mb-7" data-i18n="location">
             Villa del Paraiso<br>
             Rosarito, B.C., Mexico
         </p>
 
         <img src="assets/logo.svg" alt="Floral illustration" class="w-28 h-auto mb-9 opacity-85">
 
-        <a href="index.html" class="website-btn font-raleway text-[0.64rem] font-semibold tracking-[0.18em] uppercase text-dark underline underline-offset-2">
+        <a href="index.html" class="website-btn font-raleway text-[0.64rem] font-semibold tracking-[0.18em] uppercase text-dark underline underline-offset-2" data-i18n="btn">
             Click here to go to<br>wedding website
         </a>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                heading: "Save the Date for<br>the Wedding of",
+                and: "and",
+                date: "Oct 2nd, 2027",
+                location: "Villa del Paraiso<br>Rosarito, B.C., Mexico",
+                btn: "Click here to go to<br>wedding website",
+            },
+            es: {
+                heading: "Reserva la Fecha para<br>la Boda de",
+                and: "y",
+                date: "2 de octubre de 2027",
+                location: "Villa del Paraiso<br>Rosarito, B.C., México",
+                btn: "Haz clic aquí para ir al<br>sitio web de la boda",
+            },
+        };
+
+        let currentLang = localStorage.getItem("lang") || "en";
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem("lang", lang);
+            const t = translations[lang];
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            const track = document.querySelector(".lang-track");
+            const labelEn = document.querySelector(".lang-en");
+            const labelEs = document.querySelector(".lang-es");
+            track.classList.toggle("es", lang === "es");
+            labelEn.classList.toggle("active", lang === "en");
+            labelEs.classList.toggle("active", lang === "es");
+            document.getElementById("langToggle").setAttribute("aria-checked", lang === "es");
+            document.documentElement.lang = lang;
+        }
+
+        // Apply saved language on load
+        setLang(currentLang);
+    </script>
 </body>
 </html>
