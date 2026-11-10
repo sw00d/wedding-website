@@ -321,85 +321,93 @@
 
       /* ── Travel ── */
       #travel {
-        background-image: url("assets/arial-villa.webp");
-        background-size: cover;
-        background-position: center;
-        position: relative;
+        background: var(--cream);
+        padding: 100px 7%;
       }
 
       #travel .section-inner {
-        position: relative;
-        z-index: 1;
+        max-width: 960px;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         text-align: left;
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 14px;
-        width: 646px;
-        max-width: 100%;
-        padding: 3rem 3.5rem;
-        color: black;
+        color: #111;
+      }
+
+      #travel .section-header {
+        text-align: center;
+        margin-bottom: 0.75rem;
+        width: 100%;
       }
 
       #travel .section-label {
         color: var(--secondary);
       }
 
-      #travel .section-title,
-      #travel .travel-text,
-      #travel ul {
-        color: #111;
-        line-height: 1.6;
+
+      .travel-intro {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #444;
+        margin-top: 0.25rem;
       }
 
-      #travel .travel-text {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      #travel ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      #travel ul li::before {
-        content: "→ ";
-      }
-
-      .travel-cards {
+      .travel-routes {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        width: 100%;
+        margin-top: 2rem;
+        padding-top: 2rem;
       }
 
-      .travel-card {
-        background: white;
-        padding: 2rem 1.75rem;
-        border-radius: 6px;
-        border-top: 3px solid var(--primary);
-        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
-      }
-
-      .travel-card-icon {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        display: block;
-      }
-
-      .travel-card h3 {
+      .travel-block-title {
         font-family: Italiana, Georgia, serif;
-        font-size: 1.05rem;
-        margin-bottom: 0.65rem;
+        font-size: 1.2rem;
+        color: #111;
+        margin-bottom: 1rem;
       }
 
-      .travel-card p {
+      .travel-block-title + p,
+      .travel-routes p,
+      .travel-section-block p {
         font-size: 0.88rem;
         line-height: 1.75;
-        color: #666;
+        color: #444;
+        margin-bottom: 0.75rem;
+      }
+
+      .travel-section-block {
+        width: 100%;
+        padding-top: 2rem;
+      }
+
+      .travel-airport-title {
+        font-family: Italiana, Georgia, serif;
+        font-size: 1rem;
+        color: #111;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .travel-important {
+        width: 100%;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: #333;
+      }
+
+      .travel-closing {
+        margin-top: 1.5rem;
+        font-family: Italiana, Georgia, serif;
+        font-size: 1.15rem;
+        color: #111;
+        width: 100%;
+        text-align: center;
       }
 
       /* ── Gallery ── */
@@ -527,8 +535,8 @@
         font-weight: 700;
         border-radius: 99px;
         box-shadow: 0 4px 22px rgba(215, 143, 164, 0.3);
-        opacity: 0.65;
-        cursor: default;
+        text-decoration: none;
+        transition: opacity 0.2s;
       }
 
       .rsvp-note {
@@ -536,6 +544,84 @@
         margin-top: 1.4rem;
         font-size: 0.72rem;
         letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+
+      /* ── FAQ ── */
+      #faq {
+        background: var(--cream);
+        padding: 100px 7%;
+      }
+
+      #faq .section-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      #faq .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .faq-item {
+        border-top: 1px solid var(--line);
+      }
+
+      .faq-item:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 1.4rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+        font-family: Italiana, Georgia, serif;
+        font-size: 1.15rem;
+        color: var(--dark);
+        letter-spacing: 0.01em;
+      }
+
+      .faq-question:hover {
+        color: var(--secondary);
+      }
+
+      .faq-icon {
+        font-size: 1.4rem;
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
+        color: var(--primary);
+        flex-shrink: 0;
+        transition: transform 0.25s ease;
+        line-height: 1;
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.3s ease;
+      }
+
+      .faq-item.open .faq-answer {
+        max-height: 400px;
+      }
+
+      .faq-answer p {
+        padding-bottom: 1.4rem;
+        font-size: 0.94rem;
+        line-height: 1.85;
         color: var(--muted);
       }
 
@@ -581,11 +667,12 @@
         }
 
         #travel {
-          padding: 2rem;
+          padding: 60px 6%;
         }
 
-        #travel .section-inner {
-          padding: 2rem 1.35rem;
+        .travel-routes {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
 
         #rsvp {
@@ -747,6 +834,7 @@
           <li><a href="#location" data-i18n="nav.location">Location</a></li>
           <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
           <li><a href="#travel" data-i18n="nav.travel">Travel</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
           <li><a href="#rsvp">RSVP</a></li>
         </ul>
         <button class="nav-lang" id="langBtn" aria-label="Switch language">
@@ -853,16 +941,6 @@
               />
             </div>
             <div class="polaroid-caption">Los Angeles, 2023</div>
-          </div>
-          <div class="polaroid">
-            <div class="polaroid-img">
-              <img
-                src="gallery/Sept2023.JPG"
-                alt="Sam &amp; Frida"
-                loading="lazy"
-              />
-            </div>
-            <div class="polaroid-caption">September 2023</div>
           </div>
           <div class="polaroid">
             <div class="polaroid-img">
@@ -1103,22 +1181,42 @@
           <div class="polaroid">
             <div class="polaroid-img">
               <img
-                src="gallery/Oct2025.JPG"
-                alt="Sam &amp; Frida"
-                loading="lazy"
-              />
-            </div>
-            <div class="polaroid-caption">October 2025</div>
-          </div>
-          <div class="polaroid">
-            <div class="polaroid-img">
-              <img
                 src="gallery/Fridas28th-Feb2026.jpeg"
                 alt="Sam &amp; Frida"
                 loading="lazy"
               />
             </div>
             <div class="polaroid-caption">Frida's 28th, Feb 2026</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/May2026.jpeg"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">May 2026</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/June2026-2.png"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">June 2026</div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <img
+                src="gallery/Oct2026.JPG"
+                alt="Sam &amp; Frida"
+                loading="lazy"
+              />
+            </div>
+            <div class="polaroid-caption">October 2026</div>
           </div>
         </div>
       </div>
@@ -1127,32 +1225,185 @@
     <!-- ── Travel ── -->
     <section id="travel">
       <div class="section-inner">
-        <p class="section-label" data-i18n="travel.label">Coming soon</p>
-        <h2 class="section-title" data-i18n="travel.title">Travel Details</h2>
-        <p class="travel-text" data-i18n="travel.intro">
-          We'll have lots more details soon, but for now, here are the basics:
-        </p>
-        <ul>
-          <li data-i18n="travel.point1">
-            The venue is in Baja California, within driving distance from San
-            Diego.
-          </li>
-          <li data-i18n="travel.point2">
-            Housing and transportation recommendations will be provided.
-          </li>
-          <li data-i18n="travel.point3">
-            Global Entry is highly recommended.
-            <a href="https://ttp.dhs.gov/" target="_blank" rel="noopener"
-              >Click here for more information.</a
+        <div class="section-header">
+          <div class="section-label" data-i18n="travel.label">Travel Details</div>
+          <h2 class="display" data-i18n="travel.title">Getting There and Back</h2>
+          <p class="travel-intro" data-i18n="travel.globalentry">We strongly recommend getting <strong>Global Entry</strong> before the wedding. It gives you access to expedited SENTRI lanes at the land border, which makes a significant difference whether you're walking or driving across.</p>
+        </div>
+        <!-- Airports -->
+        <div class="travel-section-block">
+          <h3 class="travel-block-title" data-i18n="travel.airports.title">Airports</h3>
+          <p data-i18n="travel.airports.intro">For guests traveling by air, there are two convenient airport options for getting to Rosarito.</p>
+          <h4 class="travel-airport-title" data-i18n="travel.airports.san.title">San Diego International Airport (SAN) 🇺🇸</h4>
+          <p data-i18n="travel.airports.san.body">San Diego is our recommended airport for most guests, offering plenty of domestic flight options and often more affordable fares. From the airport, you can take an Uber or Lyft to the San Ysidro border crossing (approximately 20–30 minutes), walk across into Mexico, and request an Uber to your accommodations in Rosarito.</p>
+          <p data-i18n="travel.airports.san.friday"><strong>On Friday,</strong> we recommend landing by 12pm to accommodate border crossing time prior to the welcome event.</p>
+          <p data-i18n="travel.airports.san.sunday"><strong>On Sunday,</strong> we recommend getting a flight with a departure later than 3pm to accommodate border crossing time.</p>
+          <h4 class="travel-airport-title" data-i18n="travel.airports.tij.title">Tijuana International Airport (TIJ) 🇲🇽</h4>
+          <p data-i18n="travel.airports.tij.body">Tijuana is the closest airport on the Mexican side of the border. Flying directly into Tijuana allows you to skip the land border crossing on arrival and take an Uber or taxi straight to your accommodations in Rosarito.</p>
+          <p data-i18n="travel.airports.compare">We recommend comparing flights into both airports to find the option that works best for your travel plans!</p>
+        </div>
+
+        <!-- Getting There / Returning -->
+        <div class="travel-routes">
+          <div>
+            <h3 class="travel-block-title" data-i18n="travel.arriving.title">Getting to Rosarito</h3>
+            <p data-i18n="travel.arriving.step1.body">For guests flying into San Diego, we recommend crossing into Mexico on foot through the San Ysidro Port of Entry and taking an Uber to your accommodations in Rosarito. This is often an affordable and convenient alternative to flying directly into Tijuana.</p>
+            <p data-i18n="travel.arriving.step2.body"><strong>Border Crossing:</strong> <a href="https://maps.google.com/?q=720+E+San+Ysidro+Blvd,+San+Ysidro,+CA+92173" target="_blank" rel="noopener">720 E. San Ysidro Blvd., San Ysidro, CA 92173</a></p>
+            <p data-i18n="travel.arriving.step2.note"><strong>Before You Cross:</strong> Guests entering Mexico on foot will need to complete a <strong><a href="https://www.inm.gob.mx/fmme/publico/en/solicitud.html" target="_blank" rel="noopener">Forma Migratoria Múltiple (FMM)</a></strong>, also known as a Mexican Tourist Card. We recommend completing the form online before your trip and bringing a printed copy along with your passport.</p>
+            <p data-i18n="travel.arriving.step3.body">Once you've crossed into Tijuana, you can request an Uber to your lodging. The drive takes approximately 40–50 minutes, depending on traffic.</p>
+          </div>
+
+          <div>
+            <h3 class="travel-block-title" data-i18n="travel.returning.title">Returning to San Diego</h3>
+            <p data-i18n="travel.returning.step1.body">For your return trip, we recommend arranging a taxi from your accommodation to the San Ysidro pedestrian border crossing, then walking across into the United States. Ubers are not reliably available for return trips from Rosarito to the border. We've provided a trusted taxi contact on our website to help you arrange your return transportation.</p>
+            <p data-i18n="travel.returning.step3.body">Once across the border, you can take an Uber or Lyft to San Diego International Airport, approximately 20–30 minutes away without heavy traffic.</p>
+          </div>
+        </div>
+
+        <!-- Border Wait Times -->
+        <div class="travel-section-block">
+          <h3 class="travel-block-title" data-i18n="travel.border.title">Border Wait Times</h3>
+          <p data-i18n="travel.border.global"><strong>With Global Entry:</strong> Global Entry members can use the expedited SENTRI pedestrian lanes, where waits are often around 10–30 minutes.</p>
+          <p data-i18n="travel.border.standard"><strong>Without Global Entry:</strong> Standard pedestrian crossings can take approximately 30 minutes to 4 hours, with longer waits possible during busy weekends.</p>
+          <p data-i18n="travel.border.together">Traveling together? If one person has Global Entry and the other doesn't, you'll need to cross separately or use the standard pedestrian lanes together.</p>
+          <p data-i18n="travel.border.tip">We recommend allowing plenty of extra time before your departing flight, especially on Sundays. You can check current border wait times through U.S. Customs and Border Protection.</p>
+        </div>
+
+        <!-- Important + closing -->
+        <div class="travel-important">
+          <p data-i18n="travel.important"><strong>Important:</strong> Please bring a valid passport book for your trip to Mexico and return to the United States. Global Entry members should also bring their physical Global Entry cards to access expedited pedestrian lanes.</p>
+        </div>
+        <p class="travel-closing" data-i18n="travel.closing">We can't wait to celebrate with you in beautiful Rosarito!</p>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section id="faq">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-label" data-i18n="faq.label">Good to know</div>
+          <h2 class="display" data-i18n="faq.heading">
+            Frequently asked questions.
+          </h2>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.qtips">Any travel tips for Mexico?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.atips">A few things to keep in mind: be a smart traveller and trust your instincts. Use trusted, well-reviewed services for transportation and activities. Stick to your hotel, the venue, and popular tourist areas — these are well-monitored and safe. When in doubt, ask hotel staff for recommendations. A little preparation goes a long way toward a smooth and enjoyable trip.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q1"
+              >Will there be transportation to and from events?</span
             >
-          </li>
-        </ul>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a1">
+              Yes! Once you're in the Rosarito/Tijuana area, we'll have shuttles
+              running from a hotel in Rosarito to the venue. The exact hotel is
+              still to be confirmed. We'll share full details closer to the
+              date.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q2"
+              >Are the ceremony and reception outdoors?</span
+            >
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a2">
+              Yes and yes! Both the ceremony and reception are outdoors. The
+              reception will be held under a tent, so you'll have the best of
+              both worlds.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.qweather">What is the weather like in October?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.aweather">Very similar to San Diego — think beautiful late-summer days ranging from 70–78°F, with evenings cooling down to around 65°F. Being on the ocean, it can also get breezy at night, so we recommend bringing a light jacket. Ladies, a shawl is a great idea too.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q3">Do I need pesos?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a3">
+              Most likely not. The majority of places accept credit cards and US
+              dollars. That said, you do get a better exchange rate with pesos,
+              so it's worth having a few on hand if you plan to explore locally.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q4">Can I drink the tap water?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a4">
+              No — tap water in Mexico should not be drunk without purifying it
+              first. Most accommodations will provide purified water in jugs; if
+              yours doesn't, just ask the staff and they'll bring some. Be
+              cautius at restarurants.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.qparking">Is there parking at the venue?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.aparking">Yes! There is secured parking inside the venue. You're welcome to drive your car and leave it overnight if needed.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q6">Can I bring a guest?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a6">We're keeping our wedding intimate and have carefully curated our guest list. We kindly ask that attendance be limited to those named on your invitation — no additional guests or little ones, as much as we'd love to meet them all. We truly appreciate your understanding.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq.q7">What if I need medical care?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-i18n="faq.a7">San Diego is the nearest major medical center, approximately 45 minutes north of the venue. In the event of an emergency, that is your best option for comprehensive care. For minor needs, there are clinics and pharmacies available in Rosarito.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ── RSVP ── -->
     <section id="rsvp">
-      <div class="section-label" data-i18n="rsvp.label">Coming Soon</div>
+      <div class="section-label" data-i18n="rsvp.label">Let us know you'll be there</div>
       <h2 class="display" data-i18n="rsvp.heading">
         The party wouldn't<br />be the same without you.
       </h2>
@@ -1160,8 +1411,7 @@
         We'd love to celebrate this day with you. We'll have RSVP's open
         following a formal invite, so come back soon!
       </p>
-      <span class="rsvp-btn" data-i18n="rsvp.btn">RSVP coming soon</span>
-      <span class="rsvp-note" data-i18n="rsvp.note">Link coming soon</span>
+      <a class="rsvp-btn" href="https://app.text-my-wedding.com/rsvp/lookup?id=cmw6v248i0001jp081uplgf6u" target="_blank" rel="noopener" data-i18n="rsvp.btn">RSVP Here</a>
     </section>
 
     <!-- Footer -->
@@ -1232,30 +1482,44 @@
           "details.heading": "Meet us by the sea.",
           "gallery.label": "A bit of us",
           "gallery.heading": "Our story, in moments.",
-          "travel.label": "Coming soon",
-          "travel.title": "Travel Details",
-          "travel.heading": "A little getaway<br>to Baja.",
-          "travel.intro":
-            "We'll have lots more details soon, but for now, here are the basics:",
-          "travel.point1":
-            "The venue is in Baja California, within driving distance from San Diego.",
-          "travel.point2":
-            "Housing and transportation recommendations will be provided.",
-          "travel.point3":
-            "Global Entry is highly recommended. <a href='https://ttp.dhs.gov/' target='_blank' rel='noopener'>Click here for more information.</a>",
-          "travel.toll.title": "Toll Roads",
-          "travel.toll.body":
-            "Once in Mexico, you'll take the toll roads and enjoy stunning views of the Pacific Ocean. The cost is approximately $8–$10 round trip, so make sure you have cash.",
-          "travel.insurance.title": "Mexican Auto Insurance",
-          "travel.insurance.body":
-            "Please purchase Mexican auto insurance if you drive your vehicle across the border — U.S. insurance typically does not provide coverage in Mexico.",
-          "travel.drive.title": "The Scenic Drive",
-          "travel.drive.body":
-            "The coastal highway from Tijuana to Rosarito is a beautiful stretch of Pacific coastline. Enjoy the views — the drive is part of the experience.",
+          "travel.label": "Travel Details",
+          "travel.title": "Getting There and Back",
+          "travel.globalentry": "We strongly recommend getting <strong>Global Entry</strong> before the wedding. It gives you access to expedited SENTRI lanes at the land border, which makes a significant difference whether you're walking or driving across.",
+          "travel.intro": "Here's everything you need to know about getting to and from beautiful Rosarito.",
+          "travel.arriving.title": "Getting to Rosarito",
+          "travel.arriving.step1.title": "Fly into San Diego (SAN)",
+          "travel.arriving.step1.body": "For guests flying into San Diego, we recommend crossing into Mexico on foot through the San Ysidro Port of Entry and taking an Uber to your accommodations in Rosarito. This is often an affordable and convenient alternative to flying directly into Tijuana.",
+          "travel.arriving.step2.title": "Cross at San Ysidro",
+          "travel.arriving.step2.body": "<strong>Border Crossing:</strong> <a href='https://maps.google.com/?q=720+E+San+Ysidro+Blvd,+San+Ysidro,+CA+92173' target='_blank' rel='noopener'>720 E. San Ysidro Blvd., San Ysidro, CA 92173</a>",
+          "travel.arriving.step2.note": "<strong>Before You Cross:</strong> Guests entering Mexico on foot will need to complete a <strong><a href='https://www.inm.gob.mx/fmme/publico/en/solicitud.html' target='_blank' rel='noopener'>Forma Migratoria Múltiple (FMM)</a></strong>, also known as a Mexican Tourist Card. We recommend completing the form online before your trip and bringing a printed copy along with your passport.",
+          "travel.arriving.step3.title": "Uber to Rosarito",
+          "travel.arriving.step3.body": "Once you've crossed into Tijuana, you can request an Uber to your lodging. The drive takes approximately 40–50 minutes, depending on traffic.",
+          "travel.returning.title": "Returning to San Diego",
+          "travel.returning.step1.title": "Taxi to San Ysidro",
+          "travel.returning.step1.body": "We recommend arranging a taxi from your accommodation to the San Ysidro pedestrian border crossing. Ubers are not reliably available for return trips from Rosarito to the border. We've provided a trusted taxi contact on our website to help you arrange your return transportation.",
+          "travel.returning.step2.title": "Walk across the border",
+          "travel.returning.step3.title": "Uber to the airport",
+          "travel.returning.step3.body": "Once across the border, you can take an Uber or Lyft to San Diego International Airport, approximately 20–30 minutes away without heavy traffic.",
+          "travel.border.title": "Border Wait Times",
+          "travel.border.global": "<strong>With Global Entry:</strong> Global Entry members can use the expedited SENTRI pedestrian lanes, where waits are often around 10–30 minutes.",
+          "travel.border.standard": "<strong>Without Global Entry:</strong> Standard pedestrian crossings can take approximately 30 minutes to 4 hours, with longer waits possible during busy weekends.",
+          "travel.border.together": "Traveling together? If one person has Global Entry and the other doesn't, you'll need to cross separately or use the standard pedestrian lanes together.",
+          "travel.border.tip": "We recommend allowing plenty of extra time before your departing flight, especially on Sundays. You can check current border wait times through U.S. Customs and Border Protection.",
+          "travel.airports.title": "Airports",
+          "travel.airports.intro": "For guests traveling by air, there are two convenient airport options for getting to Rosarito.",
+          "travel.airports.san.title": "San Diego International Airport (SAN) 🇺🇸",
+          "travel.airports.san.body": "San Diego is our recommended airport for most guests, offering plenty of domestic flight options and often more affordable fares. From the airport, you can take an Uber or Lyft to the San Ysidro border crossing (approximately 20–30 minutes), walk across into Mexico, and request an Uber to your accommodations in Rosarito.",
+          "travel.airports.san.friday": "<strong>On Friday,</strong> we recommend landing by 12pm to accommodate border crossing time prior to the welcome event.",
+          "travel.airports.san.sunday": "<strong>On Sunday,</strong> we recommend getting a flight with a departure later than 3pm to accommodate border crossing time.",
+          "travel.airports.tij.title": "Tijuana International Airport (TIJ) 🇲🇽",
+          "travel.airports.tij.body": "The closest airport on the Mexican side of the border. Flying directly into Tijuana lets you skip the land border crossing on arrival and take an Uber or taxi straight to your accommodations in Rosarito.",
+          "travel.airports.compare": "We recommend comparing flights into both airports to find the option that works best for your travel plans!",
+          "travel.important": "<strong>Important:</strong> Please bring a valid passport book for your trip to Mexico and return to the United States. Global Entry members should also bring their physical Global Entry cards to access expedited pedestrian lanes.",
+          "travel.closing": "We can't wait to celebrate with you in beautiful Rosarito!",
           "gallery.title": "A bit of us",
           "gallery.subtitle": "Here's some of our favorite memories of us",
           "rsvp.heading": "RSVP",
-          "rsvp.btn": "RSVP coming soon",
+          "rsvp.btn": "RSVP Here",
           "gallery.cap1": "How it started",
           "gallery.cap2": "First adventure",
           "gallery.cap3": "The proposal",
@@ -1264,9 +1528,37 @@
           "gallery.cap6": "Better together",
           "gallery.cap7": "Adventures ahead",
           "gallery.cap8": "Forever",
-          "rsvp.label": "Coming Soon",
-          "rsvp.text":
-            "We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!",
+          "nav.faq": "FAQ",
+          "faq.label": "Good to know",
+          "faq.heading": "Frequently asked questions.",
+          "faq.qsafety": "Is it safe to travel to Mexico?",
+          "faq.asafety": "Yes! As with any international travel, we encourage you to be mindful and ensure you have all the proper documentation when crossing the border. Travel smart, and avoid areas that feel unfamiliar or uncomfortable. Transportation will be provided for all events taking place outside the designated hotels, so you'll always have a safe and easy way to get around. All hotels and the venue have 24/7 security for your comfort and peace of mind.",
+          "faq.q1": "Will there be transportation to and from events?",
+          "faq.a1": "Yes! Once you're in the Rosarito/Tijuana area, we'll have shuttles running from a hotel in Rosarito to the venue. The exact hotel is still to be confirmed. We'll share full details closer to the date.",
+          "faq.q2": "Are the ceremony and reception outdoors?",
+          "faq.a2": "Yes and yes! Both the ceremony and reception are outdoors. The reception will be held under a tent, so you'll have the best of both worlds.",
+          "faq.qtips": "Any travel tips for Mexico?",
+          "faq.atips": "A few things to keep in mind: be a smart traveller and trust your instincts. Use trusted, well-reviewed services for transportation and activities. Stick to your hotel, the venue, and popular tourist areas — these are well-monitored and safe. When in doubt, ask hotel staff for recommendations. A little preparation goes a long way toward a smooth and enjoyable trip.",
+          "faq.qweather": "What is the weather like in October?",
+          "faq.aweather": "Very similar to San Diego — think beautiful late-summer days ranging from 70–78°F, with evenings cooling down to around 65°F. Being on the ocean, it can also get breezy at night, so we recommend bringing a light jacket. Ladies, a shawl is a great idea too.",
+          "faq.q3": "Do I need pesos?",
+          "faq.a3":
+            "Most likely not. The majority of places accept credit cards and US dollars. That said, you do get a better exchange rate with pesos, so it's worth having a few on hand if you plan to explore locally.",
+          "faq.q4": "Can I drink the tap water?",
+          "faq.a4":
+            "No — tap water in Mexico should not be drunk without purifying it first. Most accommodations will provide purified water in jugs; if yours doesn't, just ask the staff and they'll bring some. All restaurants, bars, and food vendors use purified water for everything they prepare, including ice cubes.",
+          "faq.qparking": "Is there parking at the venue?",
+          "faq.aparking": "Yes! There is secured parking inside the venue. You're welcome to drive your car and leave it overnight if needed.",
+          "faq.qdrive": "Should I drive or arrange transportation for the wedding?",
+          "faq.adrive": "It all depends on your comfort level. Keep in mind that if you drive, you will need to wait in slightly longer border lines. If you take transportation, the vendors can provide you with medical passes to ensure a quicker border crossing. See our ",
+          "faq.adrivelink": "travel details",
+          "faq.q6": "Can I bring a guest?",
+          "faq.a6": "We kindly ask that attendance be limited to those named on your invitation. Your formal invitation will indicate whether you've been provided a plus one. We've put a lot of love into our guest list and truly appreciate your understanding.",
+          "faq.q7": "What if I need medical care?",
+          "faq.a7":
+            "San Diego is the nearest major medical center, approximately 45 minutes north of the venue. In the event of an emergency, that is your best option for comprehensive care. For minor needs, there are clinics and pharmacies available in Rosarito.",
+          "rsvp.label": "Let us know you'll be there",
+          "rsvp.text": "We'd love to celebrate this day with you. We'll have RSVP's open following a formal invite, so come back soon!",
           "rsvp.btn": "RSVP Here",
           "rsvp.note": "Link coming soon",
           "footer.details":
@@ -1296,31 +1588,45 @@
           "details.heading": "Nos vemos junto al mar.",
           "gallery.label": "Un poco de nosotros",
           "gallery.heading": "Nuestra historia, en momentos.",
-          "travel.label": "Próximamente",
-          "travel.title": "Detalles de Viaje",
-          "travel.heading": "Una escapada<br>a Baja.",
-          "travel.intro":
-            "Pronto tendremos más detalles, pero por ahora, aquí están los aspectos básicos:",
-          "travel.point1":
-            "El venue está en Baja California, a poca distancia en auto desde San Diego.",
-          "travel.point2":
-            "Próximamente se darán recomendaciones de alojamiento y transporte.",
-          "travel.point3":
-            "Se recomienda ampliamente tener Global Entry. <a href='https://ttp.dhs.gov/' target='_blank' rel='noopener'>Haz clic aquí para más información.</a>",
-          "travel.toll.title": "Carreteras de Cuota",
-          "travel.toll.body":
-            "Una vez en México, tomarás las carreteras de cuota y disfrutarás de impresionantes vistas del Océano Pacífico. El costo es aproximadamente $8–$10 de ida y vuelta, así que ten efectivo a la mano.",
-          "travel.insurance.title": "Seguro de Auto Mexicano",
-          "travel.insurance.body":
-            "Se recomienda adquirir un seguro de auto mexicano si manejas tu vehículo cruzando la frontera — el seguro estadounidense generalmente no tiene cobertura en México.",
-          "travel.drive.title": "El Camino Escénico",
-          "travel.drive.body":
-            "La carretera costera de Tijuana a Rosarito es un hermoso tramo de la costa del Pacífico. Disfruta las vistas — el camino es parte de la experiencia.",
+          "travel.label": "Detalles de Viaje",
+          "travel.title": "Cómo Llegar y Regresar",
+          "travel.globalentry": "Recomendamos ampliamente obtener <strong>Global Entry</strong> antes de la boda — te da acceso a los carriles SENTRI en la frontera terrestre, lo que hace una gran diferencia ya sea que cruces caminando o en auto.",
+          "travel.intro": "Aquí encontrarás todo lo que necesitas saber para llegar y regresar del hermoso Rosarito.",
+          "travel.arriving.title": "Cómo Llegar a Rosarito",
+          "travel.arriving.step1.title": "Vuela a San Diego (SAN)",
+          "travel.arriving.step1.body": "Para los huéspedes que vuelen a San Diego, recomendamos cruzar a México a pie por el Puerto de Entrada de San Ysidro y tomar un Uber hasta tu alojamiento en Rosarito. Es una alternativa cómoda y económica a volar directamente a Tijuana.",
+          "travel.arriving.step2.title": "Cruza por San Ysidro",
+          "travel.arriving.step2.body": "<strong>Cruce Fronterizo:</strong> <a href='https://maps.google.com/?q=720+E+San+Ysidro+Blvd,+San+Ysidro,+CA+92173' target='_blank' rel='noopener'>720 E. San Ysidro Blvd., San Ysidro, CA 92173</a>",
+          "travel.arriving.step2.note": "<strong>Antes de Cruzar:</strong> Los huéspedes que entren a México a pie deberán completar una <strong><a href='https://www.inm.gob.mx/fmme/publico/en/solicitud.html' target='_blank' rel='noopener'>Forma Migratoria Múltiple (FMM)</a></strong>, también conocida como Tarjeta de Turista Mexicana. Recomendamos completar el formulario en línea antes del viaje y llevar una copia impresa junto con tu pasaporte.",
+          "travel.arriving.step3.title": "Uber a Rosarito",
+          "travel.arriving.step3.body": "Una vez que hayas cruzado a Tijuana, puedes pedir un Uber a tu alojamiento. El trayecto tarda aproximadamente 40–50 minutos según el tráfico.",
+          "travel.returning.title": "Regreso a San Diego",
+          "travel.returning.step1.title": "Taxi a San Ysidro",
+          "travel.returning.step1.body": "Para el regreso, recomendamos organizar un taxi desde tu alojamiento hasta el cruce peatonal de San Ysidro. Los Ubers no son confiables para el trayecto de regreso de Rosarito a la frontera. Hemos incluido un contacto de taxi de confianza en nuestro sitio web.",
+          "travel.returning.step2.title": "Cruzar la frontera a pie",
+          "travel.returning.step3.title": "Uber al aeropuerto",
+          "travel.returning.step3.body": "Una vez en Estados Unidos, puedes tomar un Uber o Lyft al Aeropuerto Internacional de San Diego, a aproximadamente 20–30 minutos sin tráfico.",
+          "travel.border.title": "Tiempos de Espera en la Frontera",
+          "travel.border.global": "<strong>Con Global Entry:</strong> Los miembros de Global Entry pueden usar los carriles peatonales SENTRI, con tiempos de espera de aproximadamente 10–30 minutos.",
+          "travel.border.standard": "<strong>Sin Global Entry:</strong> El cruce peatonal estándar puede tomar entre 30 minutos y 4 horas, con esperas más largas los fines de semana.",
+          "travel.border.together": "¿Viajan juntos? Si una persona tiene Global Entry y la otra no, deberán cruzar por separado o usar juntos los carriles estándar.",
+          "travel.border.tip": "Recomendamos salir con mucho tiempo antes de tu vuelo, especialmente los domingos. Puedes consultar los tiempos de espera actuales en el sitio de U.S. Customs and Border Protection.",
+          "travel.airports.title": "Aeropuertos",
+          "travel.airports.intro": "Para los huéspedes que viajan en avión, hay dos opciones convenientes de aeropuerto para llegar a Rosarito.",
+          "travel.airports.san.title": "Aeropuerto Internacional de San Diego (SAN) 🇺🇸",
+          "travel.airports.san.body": "San Diego es nuestro aeropuerto recomendado para la mayoría de los huéspedes, con muchas opciones de vuelos domésticos y tarifas generalmente más económicas. Desde el aeropuerto, puedes tomar un Uber o Lyft al cruce de San Ysidro (aproximadamente 20–30 minutos), cruzar a México a pie y pedir un Uber a tu alojamiento en Rosarito.",
+          "travel.airports.san.friday": "<strong>El viernes,</strong> recomendamos aterrizar antes del mediodía para tener tiempo de cruzar la frontera antes del evento de bienvenida.",
+          "travel.airports.san.sunday": "<strong>El domingo,</strong> recomendamos reservar un vuelo con salida después de las 3pm para tener tiempo de cruzar la frontera.",
+          "travel.airports.tij.title": "Aeropuerto Internacional de Tijuana (TIJ) 🇲🇽",
+          "travel.airports.tij.body": "El aeropuerto más cercano del lado mexicano. Volar directamente a Tijuana te permite saltarte el cruce terrestre y tomar un Uber o taxi directo a tu alojamiento en Rosarito.",
+          "travel.airports.compare": "¡Te recomendamos comparar vuelos a ambos aeropuertos para encontrar la opción que mejor se adapte a tu viaje!",
+          "travel.important": "<strong>Importante:</strong> Lleva un pasaporte válido para tu viaje a México y el regreso a Estados Unidos. Los miembros de Global Entry también deben traer su tarjeta física de Global Entry para acceder a los carriles peatonales expeditos.",
+          "travel.closing": "¡No podemos esperar para celebrar contigo en el hermoso Rosarito!",
           "gallery.title": "Un poco de nosotros",
           "gallery.subtitle":
             "Aquí están algunos de nuestros recuerdos favoritos",
           "rsvp.heading": "RSVP",
-          "rsvp.btn": "Confirmación próximamente",
+          "rsvp.btn": "Confirmar aquí",
           "gallery.cap1": "Cómo empezó",
           "gallery.cap2": "Primera aventura",
           "gallery.cap3": "La propuesta",
@@ -1329,9 +1635,37 @@
           "gallery.cap6": "Mejor juntos",
           "gallery.cap7": "Aventuras por venir",
           "gallery.cap8": "Para siempre",
-          "rsvp.label": "Próximamente",
-          "rsvp.text":
-            "Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.",
+          "nav.faq": "Preguntas",
+          "faq.label": "Bueno saberlo",
+          "faq.heading": "Preguntas frecuentes.",
+          "faq.qsafety": "¿Es seguro viajar a México?",
+          "faq.asafety": "¡Sí! Como en cualquier viaje internacional, te recomendamos ser precavido y asegurarte de tener toda la documentación necesaria al cruzar la frontera. Viaja con inteligencia y evita zonas que se sientan desconocidas o incómodas. Se proporcionará transporte para todos los eventos fuera de los hoteles designados, así que siempre tendrás una forma segura y fácil de movilizarte. Todos los hoteles y el lugar cuentan con seguridad las 24 horas para tu tranquilidad.",
+          "faq.q1": "¿Habrá transporte hacia y desde los eventos?",
+          "faq.a1": "¡Sí! Una vez que estés en la zona de Rosarito/Tijuana, tendremos camionetas desde un hotel en Rosarito hasta el lugar. El hotel exacto está por confirmarse. Compartiremos todos los detalles más cerca de la fecha.",
+          "faq.q2": "¿La ceremonia y la recepción son al aire libre?",
+          "faq.a2": "¡Sí en ambos casos! Tanto la ceremonia como la recepción son al aire libre. La recepción se realizará bajo una carpa, así que tendrás lo mejor de los dos mundos.",
+          "faq.qtips": "¿Algún consejo para viajar a México?",
+          "faq.atips": "Algunos puntos a tener en cuenta: sé un viajero inteligente y confía en tu instinto. Utiliza servicios de transporte y actividades confiables y bien valorados. Quédate en tu hotel, el lugar del evento y zonas turísticas conocidas — están bien vigiladas y son seguras. Si tienes dudas, pregunta al personal del hotel por recomendaciones. Un poco de preparación hace una gran diferencia para tener un viaje tranquilo y agradable.",
+          "faq.qweather": "¿Cómo es el clima en octubre?",
+          "faq.aweather": "Muy similar al de San Diego — días cálidos y hermosos con temperaturas de entre 21 y 26°C, y noches que refrescan hasta unos 18°C. Al estar frente al mar, puede haber brisa por las noches, así que recomendamos traer una chaqueta ligera. Para las damas, un chal es una excelente idea.",
+          "faq.q3": "¿Necesito pesos?",
+          "faq.a3":
+            "Lo más probable es que no. La mayoría de los lugares aceptan tarjetas de crédito y dólares americanos. Dicho eso, obtienes una mejor tasa de cambio con pesos, así que vale la pena tener algunos a mano si planeas explorar la zona.",
+          "faq.q4": "¿Puedo tomar agua del grifo?",
+          "faq.a4":
+            "No — el agua del grifo en México no debe beberse sin purificarla primero. La mayoría de los alojamientos pondrán agua purificada en garrafones a tu disposición; si no, solo pídela al personal y te la traerán. Todos los restaurantes, bares y vendedores de comida usan agua purificada para todo lo que preparan, ¡incluidos los cubos de hielo!",
+          "faq.qparking": "¿Hay estacionamiento en el lugar?",
+          "faq.aparking": "¡Sí! Hay estacionamiento seguro dentro del lugar. Puedes dejar tu coche ahí de un día para otro si lo necesitas.",
+          "faq.qdrive": "¿Debo manejar o contratar transporte para la boda?",
+          "faq.adrive": "Todo depende de tu nivel de comodidad. Ten en cuenta que si manejas, tendrás que esperar un poco más en la fila de la frontera. Si optas por transporte, los proveedores pueden darte pases médicos para asegurar un cruce fronterizo más rápido. Consulta nuestros ",
+          "faq.adrivelink": "detalles de viaje",
+          "faq.q6": "¿Puedo traer un acompañante?",
+          "faq.a6": "Les pedimos amablemente que la asistencia se limite a quienes aparecen en la invitación. La invitación formal indicará si se les ha otorgado un lugar adicional. Hemos preparado nuestra lista con mucho cariño y agradecemos sinceramente su comprensión.",
+          "faq.q7": "¿Qué hago si necesito atención médica?",
+          "faq.a7":
+            "San Diego es el centro médico más cercano, a unos 45 minutos al norte del lugar. En caso de emergencia, es tu mejor opción para atención médica integral. Para necesidades menores, hay clínicas y farmacias disponibles en Rosarito.",
+          "rsvp.label": "Haznos saber que estarás.",
+          "rsvp.text": "Nos encantaría celebrar este día contigo. Por favor haznos saber si podrás acompañarnos en Rosarito para nuestra boda.",
           "rsvp.btn": "Confirmar aquí",
           "rsvp.note": "Enlace próximamente",
           "footer.details":
@@ -1623,6 +1957,17 @@
 
         requestAnimationFrame(tick);
       })();
+
+      // ── FAQ accordion ──────────────────────────────────────────────
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.querySelector(".faq-question").addEventListener("click", () => {
+          const isOpen = item.classList.contains("open");
+          document
+            .querySelectorAll(".faq-item.open")
+            .forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     </script>
   </body>
 </html>
